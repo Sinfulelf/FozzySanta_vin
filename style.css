@@ -16,10 +16,37 @@ html, body {
 
 #nav {
     flex: 0 1 auto;
+    position: relative;
 }
 
 #main-content {
     flex: 1 1 auto;
-    margin: 0.1em 2em 1em 2em;
+    margin: .1em 2em .8em 2em;
     background-color: #FFF;
+}
+
+/*Material ovverwrite*/
+#nav.nav-extended .nav-wrapper{
+    min-height: 50px;
+}
+
+#nav .brand-logo{
+    left: 25% !important;
+}
+
+#nav-remove {
+    position: absolute;
+    top: .6em;
+    right: 1em;
+}
+
+#nav-remove > i {
+    line-height: 36px;
+}
+
+/*MEDIA*/
+@media (max-width: 620px) {
+    #main-content {
+        margin: 0 .8em;
+    }
 }
