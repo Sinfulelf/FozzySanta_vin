@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-	M.AutoInit()
+	var tab = M.Tabs.init(document.getElementById('nav-tabs'), {
+		//swipeable: true,
+		duration: 300
+	});
+
+	var tooltip = M.Tooltip.init(document.querySelectorAll('.tooltipped'), {
+
+	});
+
+    var instances = M.Modal.init(document.querySelectorAll('.modal'), {
+		opacity: 0.7
+	});
 });
 
 function getUserID(callback) {

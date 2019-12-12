@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Таємний Санта FozzyVin</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -20,38 +21,64 @@
       <div id="root" class="content-wrapper">
         <nav id="nav" class="nav-extended navbar-fixed deep-purple">
           <div class="nav-wrapper col s18">
-            <a href="#" class="brand-logo">🎁Fozzy Santa Vin🎁</a>
+            <a href="#!" class="brand-logo">🎁Fozzy Santa Vin🎁</a>
           </div>
           <div class="nav-content">
             <ul id="nav-tabs" class="tabs tabs-transparent">
               <li class="tab">
-                <a class="active" href="#test1">Реєстрація</a>
+                <a class="active waves-effect waves-light" href="#test1"
+                  >Реєстрація</a
+                >
               </li>
-              <li class="tab"><a href="#test2">Учасники</a></li>
+              <li class="tab">
+                <a class="waves-effect waves-light" href="#test2">Учасники</a>
+              </li>
               <li
                 class="tab disabled tooltipped"
                 data-position="bottom"
                 data-tooltip="Буде доступне 18-ого числа"
               >
-                <a href="#test3">Побажання адресата</a>
+                <a class="waves-effect waves-light" href="#test3">
+                  Побажання адресата
+                </a>
               </li>
             </ul>
           </div>
-          <button
+          <a
             id="nav-remove"
-            class="btn waves-effect waves-light"
+            href="#remove-modal"
+            class="btn waves-effect waves-light tooltipped modal-trigger"
             type="submit"
             name="action"
+            data-position="left"
+            data-tooltip="Видалити себе із Таємного санти"
           >
-            Видалити
+            Видалитись
             <i class="material-icons right">remove_shopping_cart</i>
-          </button>
+          </a>
         </nav>
         <div id="main-content" class="card ">
-          <div id="test1" class="col s12">Test 1</div>
+          <div id="test1" class="col s12"></div>
           <div id="test2" class="col s12">Test 2</div>
-          <div id="test3" class="col s12">Test 3</div>
+          <div id="test3" class="col s12"></div>
         </div>
+      </div>
+    </div>
+    <div id="remove-modal" class="modal">
+      <div class="modal-content">
+        <h4>Видалити з участі?</h4>
+        <p style="font-style: 16px;">
+          Ви насправді бажаєте видалити себе з участі у розіграші таємного
+          санти?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a id="remove-myself" href="#!" class="modal-close waves-effect waves-green btn-flat"
+          >Насправді хочу відмінити участь</a
+        >
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat"
+          >Відмінити</a
+        >
       </div>
     </div>
   </body>
