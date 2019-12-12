@@ -47,6 +47,10 @@ html, body {
     line-height: 36px;
 }
 
+#remove-modal{
+    min-height: 215px;
+}
+
 .modal-footer {
     font-weight: bold;
 }
@@ -71,6 +75,19 @@ html, body {
 
     #main-content {
         margin: 0 .8em;
+    }
+
+    #main-content > div {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    #main-content > div > .wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
     }
 
     #remove-modal{
