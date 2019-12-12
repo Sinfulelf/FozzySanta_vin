@@ -54,4 +54,8 @@ html, body {
     #main-content {
         margin: 0 .8em;
     }
+
+    #remove-modal{
+        min-height: 265px;
+    }
 }
