@@ -7,14 +7,31 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="index.js"></script>
   </head>
   <body>
-    <h1>Fozzy santa</h1>
-    <div class="container">
-      <!-- Page Content goes here -->
+    <div id="root" class="content-wrapper">
+      <nav id="nav" class="nav-extended navbar-fixed deep-purple">
+        <div class="nav-wrapper col s12 container">
+          <a href="#" class="brand-logo">Fozzy Santa Vin</a>
+        </div>
+        <div class="nav-content">
+          <ul id="nav-tabs" class="tabs tabs-transparent">
+            <li class="tab"><a href="#test1">Учасники</a></li>
+            <li class="tab"><a href="#test2">Реєстрація</a></li>
+            <li class="tab disabled tooltipped" data-position="bottom" data-tooltip="Буде доступне 18-ого числа">
+              <a href="#test3">Побажання адресата</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div id="main-content" class="card ">
+        <div id="test1" class="col s12">Test 1</div>
+        <div id="test2" class="col s12">Test 2</div>
+        <div id="test3" class="col s12">Test 3</div>
+      </div>
     </div>
   </body>
 </html>
