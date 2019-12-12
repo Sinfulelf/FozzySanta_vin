@@ -3,8 +3,6 @@ html, body {
     width: 100%;
     height: 100%;
     position: relative;
-    min-width: 450px;
-    min-height: 500px;
 }
 
 #root-wrapper {
@@ -41,8 +39,8 @@ html, body {
 
 #nav-remove {
     position: absolute;
-    top: .8em;
-    right: 1em;
+    top: 10px;
+    right: 15px;
 }
 
 #nav-remove > i {
@@ -51,6 +49,18 @@ html, body {
 
 /*MEDIA*/
 @media (max-width: 620px) {
+    .tab.disabled {
+        display: none;
+    }
+
+    #nav .brand-logo{
+        font-size: 25px;
+    }
+
+    #nav-remove {
+        font-size: 0;
+    }
+
     #main-content {
         margin: 0 .8em;
     }
