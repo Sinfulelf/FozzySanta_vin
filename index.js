@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	getUsers(function(data) {
-		return
 		var users = document.getElementById('users');
 		var html = ''
 		for (let user in data) {
