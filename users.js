@@ -2,72 +2,84 @@ var users = [
     {
         "id": 1,
         "name": "Анастасія Кравець",
+        "bonus_name": "Настя",
         "avatar": "anastasiaKravets.png",
         "wish": "",
         "participation": null
     },{
         "id": 2,
-        "name": "Анатолій ",
+        "name": "Анатолій Бугера",
+        "bonus_name": "Толік",
         "avatar": "anatoliyBuhera.png",
         "wish": "",
         "participation": null
     },{
         "id": 3,
-        "name": "",
+        "name": "Антон Настольний",
+        "bonus_name": "Тоша",
         "avatar": "antonNastolnyi.png",
         "wish": "",
         "participation": null
     },{
         "id": 4,
-        "name": "",
+        "name": "Богдан Лученко",
+        "bonus_name": "Бодя",
         "avatar": "bohdanLuchenko.png",
         "wish": "",
         "participation": null
     },{
         "id": 5,
-        "name": "",
+        "name": "Богдан Семикрас",
+        "bonus_name": "Бодя",
         "avatar": "bohdanSemykras.png",
         "wish": "",
         "participation": null
     },{
         "id": 6,
-        "name": "",
+        "name": "Богдан Швець",
+        "bonus_name": "Бодя",
         "avatar": "bohdanSvec.png",
         "wish": "",
         "participation": null
     },{
         "id": 7,
-        "name": "",
+        "name": "Діана Климчик",
+        "bonus_name": "",
         "avatar": "dianaKlimchik.png",
         "wish": "",
         "participation": null
     },{
         "id": 8,
-        "name": "",
+        "name": "Дмитро",
+        "bonus_name": "Діма",
         "avatar": "dima__.png",
         "wish": "",
         "participation": null
     },{
         "id": 9,
-        "name": "",
+        "name": "Дмитро Білуха",
+        "bonus_name": "Діма",
         "avatar": "dimaBilukha.png",
         "wish": "",
         "participation": null
     },{
         "id": 10,
-        "name": "",
+        "name": "Дмитро Самборський",
+        "bonus_name": "Діма",
         "avatar": "dimaSamborskyi.png",
         "wish": "",
         "participation": null
     },{
         "id": 11,
-        "name": "",
+        "name": "Євгеній Долгій",
+        "bonus_name": "Женя",
         "avatar": "evgeniyDolhiy.png",
         "wish": "",
         "participation": null
     },{
         "id": 12,
-        "name": "",
+        "name": "Ігор Педорич",
+        "bonus_name": "Начальнич",
         "avatar": "igorPedorych.png",
         "wish": "",
         "participation": null
