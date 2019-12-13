@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		duration: 300
 	});
 
-	var tooltip = M.Tooltip.init(document.querySelectorAll('.tooltipped'), {
+	var tooltip = M.Tooltip.init(document.querySelectorAll('.tooltipped'), {});
 
+    var modal = M.Modal.init(document.querySelectorAll('.modal'), {
+		opacity: 0.7
 	});
 
-    var instances = M.Modal.init(document.querySelectorAll('.modal'), {
-		opacity: 0.7
+    var autocomplete = M.Autocomplete.init(document.querySelectorAll('.autocomplete'), {
+
 	});
 });
 
