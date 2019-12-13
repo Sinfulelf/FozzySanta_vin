@@ -14,50 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		opacity: 0.7
 	});
 
+
+
 	getUsers(function(data) {
 		var users = document.getElementById('users');
-		var html = ''
-		for (let user in data) {
-
-			var participation = data[user].participation || true;
-			var avatar = avatars[data[user].avatar];
-			var wish = data[user].wish;
-
-			html += `			
-				<div class="col s12 m8 offset-m2 l6 offset-l3" style="position:relative;">
-				<div class="card-panel grey lighten-5 z-depth-1">
-				<div class="row valign-wrapper">
-					<div class="col s2">
-						<img src="data:image/png;base64,${avatar}" alt="" class="circle responsive-img" style="padding-top: 2em;"> 
-					</div>
-					<div class="col s10">
-						<div class="name">
-							<p> ТУТ БУДЕ ІМ'Я</p>
-							</div>
-						<div class="row1" style="    margin-top: 2em;">
-							<span class="black-text">
-								ТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕ
-							</span>
-						</div>
-					</div>
-				</div>
-				<div class="card-buttons">
-					${
-						participation
-							? '<a class="waves-effect waves-light btn-small">Відмовитись від участі 😥</a>'
-							: '<a class="waves-effect waves-light btn-small">Прийняти участь 👍</a>'
-					}
-					${
-						participation
-							? `<a class="waves-effect waves-light btn-small">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
-							: ''
-					}
-				</div>
-				</div>
-			</div>            	
-			`;
-		}
-		users.innerHTML = html;
+		users.innerHTML = buildCards(data);
 	});	
 });
 
@@ -81,4 +42,53 @@ function getUsers(callback) {
 	};
 
 	request.send();
+}
+
+function buildCards (data) {
+		var html = ''
+		for (let user in data) {
+
+			var id = data[user].id;
+			var participation = data[user].participation || true;
+			var avatarBase64 = avatars[data[user].avatar];
+			var wish = data[user].wish;
+
+			html += `			
+				<div class="col s12 m8 offset-m2 l6 offset-l3" style="position:relative;" data-id=${id}>
+					<div class="card-panel grey lighten-5 z-depth-1">
+						<div class="row valign-wrapper">
+							<div class="col s2">
+								<img src="data:image/png;base64,${avatarBase64}"
+									alt=""
+									class="circle responsive-img"
+									style="padding-top:1.75em;" /> 
+							</div>
+							<div class="col s10">
+								<div class="name">
+									<p> ТУТ БУДЕ ІМ'Я</p>
+								</div>
+							<div class="row1" style="margin-top:2%;">
+								<span class="black-text">
+									ТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕ
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="card-buttons">
+						${
+							participation
+								? '<a class="waves-effect waves-light btn-small modal-trigger" href="#remove-modal">Відмовитись від участі 😥</a>'
+								: '<a class="waves-effect waves-light btn-small">Прийняти участь 👍</a>'
+						}
+						${
+							participation
+								? `<a class="waves-effect waves-light btn-small">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
+								: ''
+						}
+					</div>
+				</div>
+			</div>            	
+			`;
+		}
+		return html;
 }
