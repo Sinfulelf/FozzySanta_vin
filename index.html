@@ -12,72 +12,57 @@
 
     <link rel="stylesheet" href="style.css" />
     <script src="index.js"></script>
+    <script src="avatars.js"></script>
   </head>
   <body>
     <div id="root-wrapper">
       <div id="root" class="content-wrapper z-depth-3">
-        <nav id="nav" class="nav-extended navbar-fixed deep-purple">
+        <nav id="nav" class="nav-extended navbar-fixed purple darken-4">
           <div class="nav-wrapper col s18">
-            <a href="#!" class="brand-logo">TemaBit Santa Vin🎁</a>
+            <a href="#!" class="brand-logo">TemaBit Santa Vin
+              <i style="font-style:inherit;float:right;line-height:62px;">🎁</i>
+            </a>
           </div>
           <div class="nav-content">
             <ul id="nav-tabs" class="tabs tabs-transparent">
               <li class="tab">
                 <a class="active waves-effect waves-light" href="#test1"
-                  >Реєстрація</a
+                  >Учасники</a
                 >
               </li>
               <li class="tab">
-                <a class="waves-effect waves-light" href="#test2">Учасники</a>
-              </li>
-              <li
-                class="tab disabled tooltipped"
-                data-position="bottom"
-                data-tooltip="Буде доступне 18-ого числа"
-              >
-                <a class="waves-effect waves-light" href="#test3">
-                  Побажання адресата
-                </a>
+                <a class="waves-effect waves-light" href="#test2">Правила</a>
               </li>
             </ul>
           </div>
-          <a
-            id="nav-remove"
-            href="#remove-modal"
-            class="btn waves-effect waves-light tooltipped modal-trigger"
-            name="action"
-            data-position="left"
-            data-tooltip="Видалити себе із Таємного санти"
-          >
-            Відмовитись
-            <i class="material-icons right" style="font-style:inherit;">😥</i>
-          </a>
         </nav>
         <div id="main-content" class="card ">
           <div id="test1" class="col s12">
             <div class="wrapper">
               <div class="row s12"></div>
               <div class="row s12">
-                <div class="col s2" style="padding: 30px 0;"></div>
+                <div class="col s1" style="padding: 30px 0; "></div>
                 <div
                   class="input-field col s8 center-align"
-                  style="text-align: center;"
+                  style="text-align: center;max-width:300px;"
                 >
                   <input
                     id="user_name"
                     type="text"
                     placeholder="@marmelad8888"
-                    class="validate autocomplete"
+                    class="validate"
                   />
-                  <label class="active" for="user_name">Ваше iм'я</label>
+                  <label class="active" for="user_name">Ім'я учасника:</label>
+                </div>
+              </div>
+              <div id="users" class="row col s12">
+                <div class="progress container" style="margin-top:20%;">
+                  <div class="indeterminate"></div>
                 </div>
               </div>
             </div>
           </div>
           <div id="test2" class="col s12">
-            <div id="users" class="row col s12">
-
-            </div>
           </div>
           <div id="test3" class="col s12"></div>
         </div>
@@ -85,9 +70,9 @@
     </div>
     <div id="remove-modal" class="modal">
       <div class="modal-content">
-        <h4>Видалити себе з участі?</h4>
+        <h4>Видалити учасника з участі?</h4>
         <p style="font-size: 16px;">
-          Ви насправді бажаєте видалити себе з участі у розіграші таємного
+          Ви насправді бажаєте видалити учасника з участі у розіграші таємного
           санти?
         </p>
       </div>

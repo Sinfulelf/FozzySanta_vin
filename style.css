@@ -3,6 +3,7 @@ html, body {
     width: 100%;
     height: 100%;
     position: relative;
+    min-width: 320px;
 }
 
 #root-wrapper {
@@ -26,26 +27,31 @@ html, body {
     position: relative;
 }
 
+#nav .brand-logo{
+    left: 32% !important;
+}
+
 #main-content {
     flex: 1 1 auto;
     margin: .1em 2em .8em 2em;
     background-color: #FFF;
 }
 
-/*Material ovverwrite*/
-#nav .brand-logo{
-    left: 32% !important;
+.card-panel .name {
+    position: absolute;
+    top: -5px;
+    left: 30px;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-#nav-remove {
+.card-buttons {
     position: absolute;
-    top: 15px;
+    bottom: 20px;
     right: 15px;
 }
 
-#nav-remove > i {
-    line-height: 30px;
-}
+/*Material ovverwrite*/
 
 #remove-modal{
     min-height: 215px;
@@ -69,8 +75,8 @@ html, body {
         font-size: 28px;
     }
 
-    #nav-remove {
-        font-size: 0;
+    #nav .brand-logo>i{
+        line-height: 52px!important;
     }
 
     #main-content {
@@ -103,5 +109,8 @@ html, body {
     #nav .brand-logo{
         margin-right: 1em;
         font-size: 20px;
+    }
+    #nav .brand-logo>i{
+        line-height: 50px!important;
     }
 }
