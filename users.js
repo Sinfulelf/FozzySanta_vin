@@ -85,91 +85,106 @@ var users = [
         "participation": null
     },{
         "id": 13,
-        "name": "",
+        "name": "Ілона Крижанівська",
+        "bonus_name": "",
         "avatar": "ilonaKruzanivska.png",
         "wish": "",
         "participation": null
     },{
         "id": 14,
-        "name": "",
+        "name": "Микитюк Іван",
+        "bonus_name": "Ваня",
         "avatar": "ivanMukutiyk.png",
         "wish": "",
         "participation": null
     },{
         "id": 15,
-        "name": "",
+        "name": "Бурлачук Юлія",
+        "bonus_name": "Юля",
         "avatar": "JuliaBurlachuk.png",
         "wish": "",
         "participation": null
     },{
         "id": 16,
-        "name": "",
+        "name": "Станкевич Юлія",
+        "bonus_name": "Юля",
         "avatar": "JuliaStankevich.png",
         "wish": "",
         "participation": null
     },{
         "id": 17,
-        "name": "",
+        "name": "Людмила Комарова",
+        "bonus_name": "Люда",
         "avatar": "ludaKomarova.png",
         "wish": "",
         "participation": null
     },{
         "id": 18,
-        "name": "",
+        "name": "Максим Борщевський",
+        "bonus_name": "Макс",
         "avatar": "MaksimBorschevskiy.png",
         "wish": "",
         "participation": null
     },{
         "id": 19,
-        "name": "",
+        "name": "Максим Каплюк",
+        "bonus_name": "Макс",
         "avatar": "maksymKapliuk.png",
         "wish": "",
         "participation": null
     },{
         "id": 20,
-        "name": "",
+        "name": "Короленко Олех",
+        "bonus_name": "Олех",
         "avatar": "olehKorolenko.png",
         "wish": "",
         "participation": null
     },{
         "id": 21,
-        "name": "",
+        "name": "Олег Засаднюк",
+        "bonus_name": "Олег",
         "avatar": "olehZasadniuk.png",
         "wish": "",
         "participation": null
     },{
         "id": 22,
-        "name": "",
+        "name": "Павло Столярик",
+        "bonus_name": "Паша",
         "avatar": "pavloStoliaryk.png",
         "wish": "",
         "participation": null
     },{
         "id": 23,
-        "name": "",
+        "name": "Олександр Федорчук",
+        "bonus_name": "Саша",
         "avatar": "sashaFedorchuk.png",
         "wish": "",
         "participation": null
     },{
         "id": 24,
-        "name": "",
+        "name": "Олександр Тяпкін",
+        "bonus_name": "Саша",
         "avatar": "sashaTiapkin.png",
         "wish": "",
         "participation": null
     },{
         "id": 25,
-        "name": "",
+        "name": "Сергій Левченко",
+        "bonus_name": "",
         "avatar": "sergiyLevchenko.png",
         "wish": "",
         "participation": null
     },{
         "id": 26,
-        "name": "",
+        "name": "Сергій Устинов",
+        "bonus_name": "",
         "avatar": "sergiyUstinov.png",
         "wish": "",
         "participation": null
     },{
         "id": 27,
-        "name": "",
+        "name": "Вероніка Коваль",
+        "bonus_name": "",
         "avatar": "Veronika.png",
         "wish": "",
         "participation": null
