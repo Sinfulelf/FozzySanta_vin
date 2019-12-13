@@ -66,7 +66,14 @@ html, body {
 }
 
 /*MEDIA*/
-@media (max-width: 620px) {
+
+@media (max-width: 760px){
+    .btn-small {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 625px) {
     .tab.disabled {
         display: none;
     }
@@ -98,6 +105,12 @@ html, body {
 
     #remove-modal{
         min-height: 280px;
+    }
+}
+
+@media (max-width: 600px) {
+    .btn-small {
+        font-size: 12px;
     }
 }
 

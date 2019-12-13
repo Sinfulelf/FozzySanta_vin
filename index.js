@@ -1,5 +1,6 @@
 var global = {
-	USERS_URL: 'https://api.myjson.com/bins/144nzc'
+	USERS_URL: 'https://api.myjson.com/bins/144nzc',
+	DATA: {}
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -8,16 +9,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		duration: 300
 	});
 
-	var tooltip = M.Tooltip.init(document.querySelectorAll('.tooltipped'), {});
-
 	var modal = M.Modal.init(document.querySelectorAll('.modal'), {
 		opacity: 0.7
 	});
 
-
-
 	getUsers(function(data) {
 		var users = document.getElementById('users');
+
+		global.DATA = data;
+
 		users.innerHTML = buildCards(data);
 	});	
 });
@@ -49,12 +49,17 @@ function buildCards (data) {
 		for (let user in data) {
 
 			var id = data[user].id;
+			var name =data[user].name;
 			var participation = data[user].participation || true;
 			var avatarBase64 = avatars[data[user].avatar];
 			var wish = data[user].wish;
 
 			html += `			
-				<div class="col s12 m8 offset-m2 l6 offset-l3" style="position:relative;" data-id=${id}>
+				<div
+					class="col s12 m8 offset-m2 l6 offset-l3"
+					style="position:relative;"
+					data-id="${id}"
+					data-name="${name}">
 					<div class="card-panel grey lighten-5 z-depth-1">
 						<div class="row valign-wrapper">
 							<div class="col s2">
@@ -91,4 +96,15 @@ function buildCards (data) {
 			`;
 		}
 		return html;
+}
+
+function levenshteinDistance (s, t) {
+    if (!s.length) return t.length;
+    if (!t.length) return s.length;
+
+    return Math.min(
+        levenshteinDistance(s.substr(1), t) + 1,
+        levenshteinDistance(t.substr(1), s) + 1,
+        levenshteinDistance(s.substr(1), t.substr(1)) + (s[0] !== t[0] ? 1 : 0)
+    ) + 1;
 }
