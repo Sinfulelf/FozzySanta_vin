@@ -62,6 +62,11 @@ function buildCards (data) {
 					style="position:relative;"
 					data-id="${id}">
 					<div class="card-panel grey lighten-5 z-depth-1">
+						${
+							participation
+								? ''
+								: '<span class="mask-overlay" style=""></span>'
+						}
 						<div class="row valign-wrapper">
 							<div class="col s2">
 								<img src="data:image/png;base64,${avatarBase64}"
@@ -74,9 +79,13 @@ function buildCards (data) {
 									<p>${name}</p>
 								</div>
 							<div class="row1" style="margin-top:2%;">
-								<span class="black-text">
-									ТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕ
-								</span>
+								${
+									participation
+										? wish
+											? `<span class="black-text">${wish}</span>`
+											: `<span class="grey-text disabled">Участники іще не вибрав побажання</span>`
+										: '<span class="grey-text disabled">Участники відмовився від участі</span>'
+								}								
 							</div>
 						</div>
 					</div>
@@ -84,7 +93,7 @@ function buildCards (data) {
 						${
 							participation
 								? '<a class="waves-effect waves-light btn-small modal-trigger" href="#remove-modal">Відмовитись від участі 😥</a>'
-								: '<a class="waves-effect waves-light btn-small">Прийняти участь 👍</a>'
+								: '<a class="waves-effect waves-light btn-small">Я передумав, і хочу прийняти участь 👍</a>'
 						}
 						${
 							participation
@@ -97,15 +106,4 @@ function buildCards (data) {
 			`;
 		}
 		return html;
-}
-
-function levenshteinDistance (s, t) {
-    if (!s.length) return t.length;
-    if (!t.length) return s.length;
-
-    return Math.min(
-        levenshteinDistance(s.substr(1), t) + 1,
-        levenshteinDistance(t.substr(1), s) + 1,
-        levenshteinDistance(s.substr(1), t.substr(1)) + (s[0] !== t[0] ? 1 : 0)
-    ) + 1;
 }

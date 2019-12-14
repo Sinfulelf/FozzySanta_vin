@@ -1,3 +1,7 @@
+*{
+    user-select: none;
+}
+
 html, body {
     display: table;
     width: 100%;
@@ -43,6 +47,18 @@ html, body {
     left: 30px;
     font-weight: bold;
     font-size: 16px;
+}
+
+.mask-overlay {
+    display: block;
+    opacity: 0.6;
+    position: absolute;
+    left: .75rem;
+    right: .75rem;
+    bottom: 1rem;
+    top: .5rem;
+    background: #ccc;
+    border-radius: 1px;
 }
 
 .card-buttons {
