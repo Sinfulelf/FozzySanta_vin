@@ -18,7 +18,6 @@ html, body {
     flex-direction: column;
     height: 100%;
     width: 100%;
-
     background-color: rgb(162, 162, 162);
 }
 
@@ -27,8 +26,9 @@ html, body {
     position: relative;
 }
 
-#nav .brand-logo{
-    left: 32% !important;
+#nav .brand-logo {
+    width: 100%;
+    text-indent: 2%;
 }
 
 #main-content {
@@ -53,7 +53,7 @@ html, body {
 
 /*Material ovverwrite*/
 
-#remove-modal{
+#remove-modal {
     min-height: 215px;
 }
 
@@ -61,15 +61,22 @@ html, body {
     font-weight: bold;
 }
 
-.modal-footer > a {
+.modal-footer>a {
     text-decoration: underline;
 }
 
 /*MEDIA*/
 
-@media (max-width: 760px){
+@media (max-width: 760px) {
+    #nav .brand-logo {
+        text-align: center;
+        text-indent: 0;
+    }
     .btn-small {
         font-size: 10px;
+        padding: 0 8px;
+        height: 28px;
+        line-height: 28px;
     }
 }
 
@@ -77,53 +84,81 @@ html, body {
     .tab.disabled {
         display: none;
     }
-
-    #nav .brand-logo{
+    #nav .brand-logo {
         font-size: 28px;
     }
-
-    #nav .brand-logo>i{
+    #nav .brand-logo>i {
         line-height: 52px!important;
     }
-
     #main-content {
         margin: 0 .8em;
     }
-
-    #main-content > div {
+    #main-content>div {
         height: 100%;
         width: 100%;
         position: relative;
     }
-
-    #main-content > div > .wrapper {
+    #main-content>div>.wrapper {
         display: flex;
         flex-direction: column;
         height: 100%;
         width: 100%;
     }
-
-    #remove-modal{
+    #remove-modal {
         min-height: 280px;
+    }
+
+    .row .col {
+        /* padding: 0 0 0.75rem 0; */
     }
 }
 
 @media (max-width: 600px) {
     .btn-small {
+        font-size: 13px;
+        padding: 0 4px;
+        height: 25px;
+        line-height: 25px;
+    }
+}
+
+@media (max-width: 452px) {
+    #main-content {
+        margin: 0;
+    }
+    #remove-modal {
+        min-height: 345px;
+    }
+    #nav .brand-logo {
+        margin-right: 1em;
+        font-size: 20px;
+    }
+    #nav .brand-logo>i {
+        line-height: 50px!important;
+    }
+    .btn-small {
         font-size: 12px;
+        padding: 0 3px;
+        height: 25px;
+        line-height: 25px;
     }
 }
 
 @media (max-width: 400px) {
-    #remove-modal{
+    #remove-modal {
         min-height: 325px;
     }
-
-    #nav .brand-logo{
+    #nav .brand-logo {
         margin-right: 1em;
         font-size: 20px;
     }
-    #nav .brand-logo>i{
+    .btn-small {
+        font-size: 9px;
+        padding: 0px 5px;
+        height: 22px;
+        line-height: 22px;
+    }
+    #nav .brand-logo>i {
         line-height: 50px!important;
     }
 }

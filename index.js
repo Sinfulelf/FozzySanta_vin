@@ -1,5 +1,5 @@
 var global = {
-	USERS_URL: 'https://api.myjson.com/bins/144nzc',
+	USERS_URL: 'https://api.myjson.com/bins/usf1k',
 	DATA: {}
 };
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		global.DATA = data;
 
-		users.innerHTML = buildCards(data);
+		users.innerHTML = buildCards(data.sort(el => !el.participation));
 	});	
 });
 
@@ -50,7 +50,7 @@ function buildCards (data) {
 
 			var id = data[user].id;
 			var name =data[user].name;
-			var participation = data[user].participation || true;
+			var participation = data[user].participation;
 			var avatarBase64 = avatars[data[user].avatar];
 			var wish = data[user].wish;
 
@@ -58,8 +58,7 @@ function buildCards (data) {
 				<div
 					class="col s12 m8 offset-m2 l6 offset-l3"
 					style="position:relative;"
-					data-id="${id}"
-					data-name="${name}">
+					data-id="${id}">
 					<div class="card-panel grey lighten-5 z-depth-1">
 						<div class="row valign-wrapper">
 							<div class="col s2">
@@ -70,11 +69,11 @@ function buildCards (data) {
 							</div>
 							<div class="col s10">
 								<div class="name">
-									<p> ТУТ БУДЕ ІМ'Я</p>
+									<p>${name}</p>
 								</div>
 							<div class="row1" style="margin-top:2%;">
 								<span class="black-text">
-									ТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕ
+									ТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕТУТ БУДЕ ЗАПИСАНО ПОБАЖАННЯ ЯКЕ ВІН СОБІ ХОЧЕ
 								</span>
 							</div>
 						</div>
