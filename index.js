@@ -16,9 +16,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	getUsers(function(data) {
 		var users = document.getElementById('users');
 
-		global.DATA = data;
+		var SortedBtActivity = data.sort((a,b) => b.participation - a.participation);
 
-		users.innerHTML = buildCards(data.sort(el => !el.participation));
+		global.DATA = SortedBtActivity;
+
+		users.innerHTML = buildCards(SortedBtActivity);
 	});	
 });
 
