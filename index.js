@@ -1,3 +1,5 @@
+'use strict'
+
 var global = {
 	USERS_URL: 'https://api.myjson.com/bins/usf1k',
 	DATA: []
@@ -23,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		global.DATA = SortedBtActivity;
 
 		users.innerHTML = buildCards(SortedBtActivity);
+
+		filterAfterDataLoading(global.DATA);
 	});
 
 	document.getElementById('user_name').addEventListener('input', function () {
@@ -70,11 +74,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			});
 		})(value)
 
+		var throttledToggle =  throttle(toggleCardsClass, 200);
+
 		if (global.DATA.length) {
-			toggleCardsClass(global.DATA);
+			throttledToggle(global.DATA);
 		} else {
 			filterAfterDataLoading = (data) => {
-				toggleCardsClass(data);
+				throttledToggle(data);
 				filterAfterDataLoading = (d) => false;
 			}
 		}
@@ -91,7 +97,7 @@ function getUsers(callback) {
 		if (request.status >= 200 && request.status < 400) {
 			var data = JSON.parse(request.responseText);
 			if (callback && typeof (callback) === 'function') {
-				callback(data);
+				setTimeout(() => callback(data), 1500);
 			}
 		} else {
 			// We reached our target server, but it returned an error
@@ -165,4 +171,36 @@ function buildCards(data) {
 			`;
 	}
 	return html;
+}
+
+function throttle(func, wait) {
+    var args,
+        result,
+        thisArg,
+        timeoutId,
+        lastCalled = 0;
+
+    function trailingCall() {
+      lastCalled = new Date;
+      timeoutId = null;
+      result = func.apply(thisArg, args);
+    }
+
+    return function() {
+      var now = new Date,
+          lastCalled = lastCalled || new Date,
+          remain = wait - (now - lastCalled);
+
+      args = arguments;
+      thisArg = this;
+
+      if (remain <= 0) {
+        lastCalled = now;
+        result = func.apply(thisArg, args);
+      }
+      else if (!timeoutId) {
+        timeoutId = setTimeout(trailingCall, remain);
+      }
+      return result;
+    };
 }
