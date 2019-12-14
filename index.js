@@ -1,7 +1,5 @@
-'use strict'
-
 var global = {
-	USERS_URL: 'https://api.myjson.com/bins/usf1k',
+	USERS_URL: 'https://api.myjson.com/bins/1184v4',
 	DATA: []
 };
 
@@ -97,7 +95,7 @@ function getUsers(callback) {
 		if (request.status >= 200 && request.status < 400) {
 			var data = JSON.parse(request.responseText);
 			if (callback && typeof (callback) === 'function') {
-				setTimeout(() => callback(data), 1500);
+				callback(data);
 			}
 		} else {
 			// We reached our target server, but it returned an error
@@ -127,11 +125,10 @@ function buildCards(data) {
 					style="position:relative;"
 					id="user-${id}">
 					<div class="card-panel grey lighten-5 z-depth-1">
-						${
-			participation
-				? ''
-				: '<span class="mask-overlay" style=""></span>'
-			}
+						${participation
+							? ''
+							: '<span class="mask-overlay" style=""></span>'
+						}
 						<div class="row valign-wrapper">
 							<div class="col s2">
 								<img src="data:image/png;base64,${avatarBase64}"
@@ -144,27 +141,24 @@ function buildCards(data) {
 									<p>${name}</p>
 								</div>
 							<div class="row1" style="margin-top:2%;">
-								${
-			participation
-				? wish
-					? `<span class="black-text">${wish}</span>`
-					: `<span class="grey-text disabled">Участники іще не вибрав побажання</span>`
-				: '<span class="grey-text disabled">Колега відмовився від участі</span>'
-			}								
+								${participation
+									? wish
+										? `<span class="black-text">${wish}</span>`
+										: `<span class="grey-text disabled">Участники іще не вибрав побажання</span>`
+									: '<span class="grey-text disabled">Колега відмовився від участі</span>'
+								}								
 							</div>
 						</div>
 					</div>
 					<div class="card-buttons">
-						${
-			participation
-				? '<a class="waves-effect waves-light btn-small modal-trigger" href="#remove-modal">Відмовитись від участі 😥</a>'
-				: '<a class="waves-effect waves-light btn-small">Я передумав, і хочу прийняти участь 👍</a>'
-			}
-						${
-			participation
-				? `<a class="waves-effect waves-light btn-small">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
-				: ''
-			}
+						${participation
+							? '<a class="waves-effect waves-light btn-small modal-trigger" href="#remove-modal">Відмовитись від участі 😥</a>'
+							: '<a class="waves-effect waves-light btn-small">Я передумав, і хочу прийняти участь 👍</a>'
+						}			
+						${participation
+							? `<a class="waves-effect waves-light btn-small">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
+							: ''
+						}			
 					</div>
 				</div>
 			</div>            	

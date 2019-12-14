@@ -191,7 +191,7 @@
 //     },{
 //         "id": 28,
 //         "name": "Вікторія Посвалюк",
-//         "bonus_name": "Вікa",
+//         "bonus_name": "Віка",
 //         "avatar": "viktoriaPosvalyuk.png",
 //         "wish": "",
 //         "participation": true
