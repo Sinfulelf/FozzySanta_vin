@@ -38,6 +38,7 @@ html, body {
 }
 
 .wrapper {
+    width: 100%;
     max-width: 1400px;
 }
 
@@ -79,6 +80,10 @@ html, body {
 
 .modal-footer>a {
     text-decoration: underline;
+}
+
+.hide {
+    display: none;
 }
 
 /*MEDIA*/

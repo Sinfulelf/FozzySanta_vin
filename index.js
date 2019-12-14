@@ -1,9 +1,11 @@
 var global = {
 	USERS_URL: 'https://api.myjson.com/bins/usf1k',
-	DATA: {}
+	DATA: []
 };
 
 document.addEventListener('DOMContentLoaded', function () {
+	var filterAfterDataLoading = (data) => false;
+
 	var tab = M.Tabs.init(document.getElementById('nav-tabs'), {
 		//swipeable: true,
 		duration: 300
@@ -13,15 +15,72 @@ document.addEventListener('DOMContentLoaded', function () {
 		opacity: 0.7
 	});
 
-	getUsers(function(data) {
+	getUsers(function (data) {
 		var users = document.getElementById('users');
 
-		var SortedBtActivity = data.sort((a,b) => b.participation - a.participation);
+		var SortedBtActivity = data.sort((a, b) => b.participation - a.participation);
 
 		global.DATA = SortedBtActivity;
 
 		users.innerHTML = buildCards(SortedBtActivity);
-	});	
+	});
+
+	document.getElementById('user_name').addEventListener('input', function () {
+		var value = this.value.toLowerCase();
+
+		var scaleOutClass  = 'scale-out';
+		var scaleInClass = 'scale-in';
+		var hideClass = 'hide';
+
+		var removeClass = el => {
+			if (!el.classList.contains(hideClass)) {
+				el.classList.add(scaleOutClass )
+				el.classList.remove(scaleInClass);
+				setTimeout(() => {
+					(function (elem) {
+						el.classList.add(hideClass);
+					})(el)
+				}, 300);
+			}
+		}
+		var addClass = el => {
+			if (el.classList.contains(hideClass)) {
+				el.classList.remove(hideClass);
+				setTimeout(() => {
+					(function (elem) {						
+						el.classList.remove(scaleOutClass);
+						el.classList.add(scaleInClass);
+					})(el)
+				}, 100);
+				
+			}
+		}
+
+		var toggleCardsClass = ((val) => (data) => {
+			data.forEach(item => {
+				var name = item.name.toLowerCase();
+				var subName = (item.bonus_name || '').toLowerCase();
+
+				var element = document.getElementById(`user-${item.id}`);
+
+				if (name.indexOf(value) !== -1 || subName.indexOf(value) !== -1)
+					addClass(element);
+				else
+					removeClass(element);
+			});
+		})(value)
+
+		if (global.DATA.length) {
+			toggleCardsClass(global.DATA);
+		} else {
+			filterAfterDataLoading = (data) => {
+				toggleCardsClass(data);
+				filterAfterDataLoading = (d) => false;
+			}
+		}
+	}, true);
+
+
 });
 
 function getUsers(callback) {
@@ -31,7 +90,7 @@ function getUsers(callback) {
 	request.onload = function () {
 		if (request.status >= 200 && request.status < 400) {
 			var data = JSON.parse(request.responseText);
-			if (callback && typeof(callback) === 'function') {
+			if (callback && typeof (callback) === 'function') {
 				callback(data);
 			}
 		} else {
@@ -46,27 +105,27 @@ function getUsers(callback) {
 	request.send();
 }
 
-function buildCards (data) {
-		var html = ''
-		for (let user in data) {
+function buildCards(data) {
+	var html = ''
+	for (let user in data) {
 
-			var id = data[user].id;
-			var name =data[user].name;
-			var participation = data[user].participation;
-			var avatarBase64 = avatars[data[user].avatar];
-			var wish = data[user].wish;
+		var id = data[user].id;
+		var name = data[user].name;
+		var participation = data[user].participation;
+		var avatarBase64 = avatars[data[user].avatar];
+		var wish = data[user].wish;
 
-			html += `			
+		html += `			
 				<div
-					class="col s12 m10 offset-m1 l8 offset-l2"
+					class="col s12 m10 offset-m1 l8 offset-l2 scale-transition"
 					style="position:relative;"
-					data-id="${id}">
+					id="user-${id}">
 					<div class="card-panel grey lighten-5 z-depth-1">
 						${
-							participation
-								? ''
-								: '<span class="mask-overlay" style=""></span>'
-						}
+			participation
+				? ''
+				: '<span class="mask-overlay" style=""></span>'
+			}
 						<div class="row valign-wrapper">
 							<div class="col s2">
 								<img src="data:image/png;base64,${avatarBase64}"
@@ -80,30 +139,30 @@ function buildCards (data) {
 								</div>
 							<div class="row1" style="margin-top:2%;">
 								${
-									participation
-										? wish
-											? `<span class="black-text">${wish}</span>`
-											: `<span class="grey-text disabled">Участники іще не вибрав побажання</span>`
-										: '<span class="grey-text disabled">Участники відмовився від участі</span>'
-								}								
+			participation
+				? wish
+					? `<span class="black-text">${wish}</span>`
+					: `<span class="grey-text disabled">Участники іще не вибрав побажання</span>`
+				: '<span class="grey-text disabled">Колега відмовився від участі</span>'
+			}								
 							</div>
 						</div>
 					</div>
 					<div class="card-buttons">
 						${
-							participation
-								? '<a class="waves-effect waves-light btn-small modal-trigger" href="#remove-modal">Відмовитись від участі 😥</a>'
-								: '<a class="waves-effect waves-light btn-small">Я передумав, і хочу прийняти участь 👍</a>'
-						}
+			participation
+				? '<a class="waves-effect waves-light btn-small modal-trigger" href="#remove-modal">Відмовитись від участі 😥</a>'
+				: '<a class="waves-effect waves-light btn-small">Я передумав, і хочу прийняти участь 👍</a>'
+			}
 						${
-							participation
-								? `<a class="waves-effect waves-light btn-small">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
-								: ''
-						}
+			participation
+				? `<a class="waves-effect waves-light btn-small">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
+				: ''
+			}
 					</div>
 				</div>
 			</div>            	
 			`;
-		}
-		return html;
+	}
+	return html;
 }
