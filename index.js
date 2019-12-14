@@ -1,5 +1,5 @@
 var global = {
-	USERS_URL: 'https://api.myjson.com/bins/1184v4',
+	USERS_URL: 'https://api.myjson.com/bins/mgl28',
 	DATA: []
 };
 
@@ -15,8 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		opacity: 0.7
 	});
 
-	getUsers(function (data) {
+	getUsers(function (request) {
 		var users = document.getElementById('users');
+
+		var data = [];
+		for (var [key, value] of Object.entries(request)) {
+			value.id = key;
+			data.push(value);
+		  }
 
 		var SortedBtActivity = data.sort((a, b) => b.participation - a.participation);
 
@@ -72,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			});
 		})(value)
 
-		var throttledToggle =  throttle(toggleCardsClass, 200);
+		var throttledToggle =  throttle(toggleCardsClass, 250);
 
 		if (global.DATA.length) {
 			throttledToggle(global.DATA);
@@ -134,7 +140,7 @@ function buildCards(data) {
 								<img src="data:image/png;base64,${avatarBase64}"
 									alt=""
 									class="circle responsive-img"
-									style="padding-top:1.75em;" /> 
+									style="padding-top:1.25em;" /> 
 							</div>
 							<div class="col s10">
 								<div class="name">
