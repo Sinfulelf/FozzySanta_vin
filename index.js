@@ -58,7 +58,7 @@ function buildCards (data) {
 
 			html += `			
 				<div
-					class="col s12 m8 offset-m2 l6 offset-l3"
+					class="col s12 m10 offset-m1 l8 offset-l2"
 					style="position:relative;"
 					data-id="${id}">
 					<div class="card-panel grey lighten-5 z-depth-1">
