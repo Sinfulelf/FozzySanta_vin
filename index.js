@@ -137,7 +137,7 @@ function buildCards(data) {
 						}
 						<div class="row valign-wrapper">
 							<div class="col s2">
-								<img src="data:image/png;base64,${avatarBase64}"
+								<img src="data:image/jpeg;base64,${avatarBase64}"
 									alt=""
 									class="circle responsive-img"
 									style="padding-top:1.25em;" /> 
