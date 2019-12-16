@@ -7,7 +7,6 @@ function getUsers(callback, errorCallback) {
 			var data = JSON.parse(request.responseText);
 			if (callback && typeof (callback) === 'function') {
 				callback(data);
-				errorCallback();
 			}
 		} else {
 			callback([]);

@@ -48,7 +48,7 @@ function buildCards(data) {
 							: `<a data-userid="${id}" class="waves-effect waves-light btn-small">Я передумав, і хочу прийняти участь 👍</a>`
 						}			
 						${participation
-							? `<a data-userid="${id}" class="waves-effect waves-light btn-small">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
+							? `<a data-userid="${id}" class="waves-effect waves-light btn-small wish-btn">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
 							: ''
 						}			
 					</div>
@@ -57,4 +57,40 @@ function buildCards(data) {
 			`;
 	}
 	return html;
+}
+
+function addWishTextArea(id, originalWish) {
+	console.log(2);
+	var container = document.getElementById('wish-container-'+id);
+	
+	var maxHeight = container.closest('.card-panel').offsetHeight;
+
+	var textAreaId = `textarea-${id}`;
+
+	container.innerHTML = `
+		<form class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="${textAreaId}"
+								class="materialize-textarea"
+								style="text-overflow: ellipsis;
+										word-wrap: break-word;
+										overflow: auto;
+										height: 3em;
+										padding: 3px 0;
+										max-height: 3.6em;
+										line-height: 1.2em;
+										background:#e6e4e4;
+										margin-bottom: -20px;"
+					></textarea>
+					<label for="${textAreaId}" class="">Побажання</label>
+				</div>
+			</div>
+		</form>
+	`;
+
+	setTimeout(() => {
+		var ta = document.getElementById(textAreaId);
+		ta.focus();
+	})
 }

@@ -7,7 +7,8 @@ var global = {
 		SCALE_IN: 'scale-in',
 		HIDE: 'hide',
 		ACTIVE_ONLY_HIDE: 'active-only-hide',
-		NON_PARTICIPATION: 'non-participation'
+		NON_PARTICIPATION: 'non-participation',
+		WISH_BTN: 'wish-btn'
 	},
 	state: {
 		SHOW_ACTIVE_ONLY: false,
@@ -42,7 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		global.DATA = SortedByActivity;
 		//buildCards -> f(data)- From htmlBuilder.js 
 		users.innerHTML = buildCards(SortedByActivity);
-
+		
+		subscribeAddWishBtn();
 		filterAfterDataLoading(global.DATA);
 	}, toggleNoDisplayedUserCards);
 
@@ -159,6 +161,17 @@ function toggleNoDisplayedUserCards() {
 			this.noActiveUsersWrapper.classList.add(global.classes.HIDE);
 		}
 	}, 100)
+}
+
+function subscribeAddWishBtn() {
+	var wishBtn = document.getElementsByClassName(global.classes.WISH_BTN);
+	for(var i=0; i < wishBtn.length; i++) {		
+		wishBtn[i].addEventListener('click', function() {
+			var id = this.dataset.userid;
+			console.log(1);
+			addWishTextArea(id);
+		})
+	}
 }
 
 function throttle(func, wait) {
