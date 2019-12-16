@@ -1,5 +1,5 @@
 var global = {
-	USERS_URL: 'https://api.myjson.com/bins/mgl28',
+	USERS_URL: 'https://api.myjson.com/bins/12z7p4',
 	DATA: []
 };
 
@@ -122,7 +122,7 @@ function buildCards(data) {
 		var id = data[user].id;
 		var name = data[user].name;
 		var participation = data[user].participation;
-		var avatarBase64 = avatars[data[user].avatar];
+		var avatar = data[user].avatar;
 		var wish = data[user].wish;
 
 		html += `			
@@ -137,7 +137,7 @@ function buildCards(data) {
 						}
 						<div class="row valign-wrapper">
 							<div class="col s2">
-								<img src="data:image/jpeg;base64,${avatarBase64}"
+								<img src="avatars/${avatar}"
 									alt=""
 									class="circle responsive-img"
 									style="padding-top:1.25em;" /> 
