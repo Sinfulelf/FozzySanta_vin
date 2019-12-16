@@ -1,5 +1,8 @@
 function buildCards(data) {
-	var html = ''
+	var html = `<div id="no-active-users-wrapper" class="hide container">
+					<div class="s2"></div>
+					<h3 id="no-active-users-text" class="s8 grey-text"></h3>
+				</div>`;
 	for (let user in data) {
 
 		var id = data[user].id;
@@ -10,7 +13,7 @@ function buildCards(data) {
 
 		html += `			
 				<div
-					class="col s12 m10 offset-m1 l8 offset-l2 scale-transition ${!participation ? 'non-participation' : ''}"
+					class="user-card col s12 m10 offset-m1 l8 offset-l2 scale-transition ${!participation ? 'non-participation' : ''}"
 					style="position:relative;"
 					id="user-${id}">
 					<div class="card-panel grey lighten-5 z-depth-1">

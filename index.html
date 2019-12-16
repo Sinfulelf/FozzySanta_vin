@@ -7,18 +7,24 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />  <!--1-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>  <!--2-->
-    <link rel="stylesheet" href="style.css" />  <!--3-->
-    <script src="htmlBuilder.js"></script>  <!--4-->
-    <script src="httpHelper.js"></script>  <!--5-->
-    <script src="index.js"></script>  <!--6-->
+    />
+    <!--1-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--2-->
+    <link rel="stylesheet" href="style.css" />
+    <!--3-->
+    <script src="htmlBuilder.js"></script>
+    <!--4-->
+    <script src="httpHelper.js"></script>
+    <!--5-->
+    <script src="index.js"></script>
+    <!--6-->
   </head>
   <body>
     <div id="root-wrapper">
       <div id="root" class="content-wrapper z-depth-3">
         <nav id="nav" class="nav-extended navbar-fixed purple darken-4">
-          <div class="nav-wrapper col s18">
+          <div class="nav-wrapper col s12">
             <a href="#!" class="brand-logo">
               TemaBit Таємний Санта
               <label
@@ -49,7 +55,7 @@
           >
             <div class="wrapper">
               <div class="row s12">
-                <div class="col s1" style="padding: 30px 0; "></div>
+                <div class="col s0 m1" style="padding: 30px 0; "></div>
                 <div
                   class="input-field col s5 m6 center-align"
                   style="text-align: center;max-width:300px;"
@@ -62,11 +68,18 @@
                   />
                   <label class="active" for="user_name">Ім'я учасника:</label>
                 </div>
-                <div class="input-field col s5 m4" style="float: right;padding-top: 15px;">
+                <div
+                  class="input-field col s6 m4"
+                  style="float: right;padding-top: 15px;"
+                >
                   <div class="switch" id="active_switch">
                     <label>
                       Активні
-                      <input id="active_switch_checkbox" type="checkbox" checked="checked"/>
+                      <input
+                        id="active_switch_checkbox"
+                        type="checkbox"
+                        checked="checked"
+                      />
                       <span class="lever"></span>
                       Усі
                     </label>

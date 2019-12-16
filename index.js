@@ -2,6 +2,7 @@ var global = {
 	USERS_URL: 'https://api.myjson.com/bins/12z7p4',
 	DATA: [],
 	classes: {
+		USER_CARD: 'user-card',
 		SCALE_OUT: 'scale-out',
 		SCALE_IN: 'scale-in',
 		HIDE: 'hide',
@@ -9,7 +10,8 @@ var global = {
 		NON_PARTICIPATION: 'non-participation'
 	},
 	state: {
-		SHOW_ACTIVE_ONLY: false
+		SHOW_ACTIVE_ONLY: false,
+		FILTER_TEXT: ''
 	}
 };
 
@@ -42,13 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		users.innerHTML = buildCards(SortedByActivity);
 
 		filterAfterDataLoading(global.DATA);
-	});
+	}, toggleNoDisplayedUserCards);
 
 	//FILTERING
 	var input = document.getElementById('user_name');
 	input.addEventListener('input', function () {
-		var value = this.value.toLowerCase();
-		var throttledToggle = throttle(toggleCardsClass(value), 250);
+		global.state.FILTER_TEXT = this.value.toLowerCase();
+		var throttledToggle = throttle(toggleCardsClass(global.state.FILTER_TEXT), 250);
 
 		if (global.DATA.length) {
 			throttledToggle(global.DATA);
@@ -60,62 +62,104 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	}, true);
 	if (input.value) {
-		filterAfterDataLoading = (data) => {
-			toggleCardsClass(input.value)(data);
+		global.state.FILTER_TEXT = input.value.toLowerCase();
+		filterAfterDataLoading = ((val) => (data) => {
+			toggleCardsClass(val)(data);
 			filterAfterDataLoading = (d) => false;
-		}
+		})(global.state.FILTER_TEXT)
 	}
 	var switcher = document.getElementById('active_switch_checkbox');
 	switcher.addEventListener('change', function (event) {
 		setTimeout(() => {
 			global.state.SHOW_ACTIVE_ONLY = !this.checked;
 			var nonParticipations = document.getElementsByClassName(global.classes.NON_PARTICIPATION);
-			
+
 			var changeElementHideState = global.state.SHOW_ACTIVE_ONLY ? addHideClass : removeHideClass;
 
 			for (var i = 0; i < nonParticipations.length; i++) {
-				changeElementHideState(nonParticipations[i], global.classes.ACTIVE_ONLY_HIDE);				
+				changeElementHideState(nonParticipations[i], global.classes.ACTIVE_ONLY_HIDE);
 			}
+			toggleNoDisplayedUserCards();
 		});
 	});
 });
 
-var addHideClass = (el, hideClass = global.classes.HIDE) => {
+var addHideClass = (el, hideClass = global.classes.HIDE, timeout = 300) => {
 	if (!el.classList.contains(hideClass)) {
+		el.dataset.hidden = "1";
+
 		el.classList.add(global.classes.SCALE_OUT)
 		el.classList.remove(global.classes.SCALE_IN);
 		setTimeout(() => {
 			(function (elem) {
 				elem.classList.add(hideClass);
 			})(el)
-		}, 300);
+		}, timeout);
 	}
 }
-var removeHideClass = (el, hideClass = global.classes.HIDE) => {
+var removeHideClass = (el, hideClass = global.classes.HIDE, timeout = 100) => {
 	if (el.classList.contains(hideClass)) {
 		el.classList.remove(hideClass);
+
+		if (!el.classList.contains(global.classes.ACTIVE_ONLY_HIDE)) {
+			el.dataset.hidden = "";
+		} 
+
 		setTimeout(() => {
 			(function (elem) {
 				elem.classList.remove(global.classes.SCALE_OUT);
 				elem.classList.add(global.classes.SCALE_IN);
 			})(el)
-		}, 100);
+		}, timeout);
 	}
 }
 
 var toggleCardsClass = (val) => (data) => {
 	data.forEach(item => {
-		var name = item.name.toLowerCase();
+		var names = item.name.toLowerCase().split(' ');
+
 		var subName = (item.bonus_name || '').toLowerCase();
 
 		var element = document.getElementById(`user-${item.id}`);
 
-		if (name.indexOf(val) !== -1 || subName.indexOf(val) !== -1)
+		if (names[0].startsWith(val) || (names[1] || '').startsWith(val) || subName.startsWith(val))
 			removeHideClass(element);
 		else
 			addHideClass(element);
 	});
+
+	toggleNoDisplayedUserCards();
 };
+
+function toggleNoDisplayedUserCards() {
+	setTimeout(() => {
+		if (!this.usersCards) {
+			this.usersCards = document.getElementsByClassName(global.classes.USER_CARD);
+		}
+		if (!this.noActiveUsersWrapper) {
+			this.noActiveUsersWrapper = document.getElementById('no-active-users-wrapper');
+		}
+		if (!this.noActiveUsersText) {
+			this.noActiveUsersText = document.getElementById('no-active-users-text');
+		}
+
+		var hiddenCardsCount = 0;
+		for (let i = 0; i < (this.usersCards || []).length; i++) {
+			if (this.usersCards[i].dataset.hidden) {
+				hiddenCardsCount++;
+			}
+		}
+		if (hiddenCardsCount === global.DATA.length) {
+			var fromActiveText = global.state.SHOW_ACTIVE_ONLY ? ', серед активних учасників' : '';
+			var fromFilterText = global.state.FILTER_TEXT ? `,чиє ім'я починалось би з <b>${ global.state.FILTER_TEXT}</b>`:'';
+			this.noActiveUsersText.innerHTML = `Нажаль, не вдалося знайти нікого${fromActiveText}${fromFilterText}`;
+
+			removeHideClass(this.noActiveUsersWrapper, global.classes.HIDE, 50);
+		} else {
+			this.noActiveUsersWrapper.classList.add(global.classes.HIDE);
+		}
+	}, 100)
+}
 
 function throttle(func, wait) {
 	var args,

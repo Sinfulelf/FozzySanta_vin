@@ -1,4 +1,4 @@
-function getUsers(callback) {
+function getUsers(callback, errorCallback) {
 	var request = new XMLHttpRequest();
 	request.open('GET', global.USERS_URL, true);
 
@@ -7,14 +7,17 @@ function getUsers(callback) {
 			var data = JSON.parse(request.responseText);
 			if (callback && typeof (callback) === 'function') {
 				callback(data);
+				errorCallback();
 			}
 		} else {
-			// We reached our target server, but it returned an error
+			callback([]);
+			errorCallback();
 		}
 	};
 
 	request.onerror = function () {
-		// There was a connection error of some sort
+		callback([]);
+		errorCallback();
 	};
 
 	request.send();
