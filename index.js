@@ -5,7 +5,8 @@ var global = {
 		SCALE_OUT: 'scale-out',
 		SCALE_IN: 'scale-in',
 		HIDE: 'hide',
-		SHOW_ACTIVE_ONLY: 'active-only'
+		ACTIVE_ONLY_HIDE: 'active-only-hide',
+		NON_PARTICIPATION: 'non-participation'
 	},
 	state: {
 		SHOW_ACTIVE_ONLY: false
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		opacity: 0.7
 	});
 
+	////getUsers -> f(callback)- From httpHelper.js
 	getUsers(function (request) {
 		var users = document.getElementById('users');
 
@@ -33,17 +35,17 @@ document.addEventListener('DOMContentLoaded', function () {
 			data.push(value);
 		}
 
-		var SortedBtActivity = data.sort((a, b) => b.participation - a.participation);
+		var SortedByActivity = data.sort((a, b) => b.participation - a.participation);
 
-		global.DATA = SortedBtActivity;
-
-		users.innerHTML = buildCards(SortedBtActivity);
+		global.DATA = SortedByActivity;
+		//buildCards -> f(data)- From htmlBuilder.js 
+		users.innerHTML = buildCards(SortedByActivity);
 
 		filterAfterDataLoading(global.DATA);
 	});
 
+	//FILTERING
 	var input = document.getElementById('user_name');
-
 	input.addEventListener('input', function () {
 		var value = this.value.toLowerCase();
 		var throttledToggle = throttle(toggleCardsClass(value), 250);
@@ -63,39 +65,35 @@ document.addEventListener('DOMContentLoaded', function () {
 			filterAfterDataLoading = (d) => false;
 		}
 	}
-
 	var switcher = document.getElementById('active_switch_checkbox');
 	switcher.addEventListener('change', function (event) {
-		if (!this.participants) {
-			this.participants = document.getElementById('participants');
-		}
 		setTimeout(() => {
 			global.state.SHOW_ACTIVE_ONLY = !this.checked;
-			if (global.state.SHOW_ACTIVE_ONLY &&
-				!this.participants.classList.contains(global.classes.SHOW_ACTIVE_ONLY)) {
-				this.participants.classList.add(global.classes.SHOW_ACTIVE_ONLY);
-			} else if (!global.state.SHOW_ACTIVE_ONLY &&
-				this.participants.classList.contains(global.classes.SHOW_ACTIVE_ONLY)) {
-					this.participants.classList.remove(global.classes.SHOW_ACTIVE_ONLY);
+			var nonParticipations = document.getElementsByClassName(global.classes.NON_PARTICIPATION);
+			
+			var changeElementHideState = global.state.SHOW_ACTIVE_ONLY ? addHideClass : removeHideClass;
+
+			for (var i = 0; i < nonParticipations.length; i++) {
+				changeElementHideState(nonParticipations[i], global.classes.ACTIVE_ONLY_HIDE);				
 			}
 		});
-	})
+	});
 });
 
-var removeCardsClass = el => {
-	if (!el.classList.contains(global.classes.HIDE)) {
+var addHideClass = (el, hideClass = global.classes.HIDE) => {
+	if (!el.classList.contains(hideClass)) {
 		el.classList.add(global.classes.SCALE_OUT)
 		el.classList.remove(global.classes.SCALE_IN);
 		setTimeout(() => {
 			(function (elem) {
-				elem.classList.add(global.classes.HIDE);
+				elem.classList.add(hideClass);
 			})(el)
 		}, 300);
 	}
 }
-var addCardsClass = el => {
-	if (el.classList.contains(global.classes.HIDE)) {
-		el.classList.remove(global.classes.HIDE);
+var removeHideClass = (el, hideClass = global.classes.HIDE) => {
+	if (el.classList.contains(hideClass)) {
+		el.classList.remove(hideClass);
 		setTimeout(() => {
 			(function (elem) {
 				elem.classList.remove(global.classes.SCALE_OUT);
@@ -113,91 +111,11 @@ var toggleCardsClass = (val) => (data) => {
 		var element = document.getElementById(`user-${item.id}`);
 
 		if (name.indexOf(val) !== -1 || subName.indexOf(val) !== -1)
-			addCardsClass(element);
+			removeHideClass(element);
 		else
-			removeCardsClass(element);
+			addHideClass(element);
 	});
 };
-
-function getUsers(callback) {
-	var request = new XMLHttpRequest();
-	request.open('GET', global.USERS_URL, true);
-
-	request.onload = function () {
-		if (request.status >= 200 && request.status < 400) {
-			var data = JSON.parse(request.responseText);
-			if (callback && typeof (callback) === 'function') {
-				callback(data);
-			}
-		} else {
-			// We reached our target server, but it returned an error
-		}
-	};
-
-	request.onerror = function () {
-		// There was a connection error of some sort
-	};
-
-	request.send();
-}
-
-function buildCards(data) {
-	var html = ''
-	for (let user in data) {
-
-		var id = data[user].id;
-		var name = data[user].name;
-		var participation = data[user].participation;
-		var avatar = data[user].avatar;
-		var wish = data[user].wish;
-
-		html += `			
-				<div
-					class="col s12 m10 offset-m1 l8 offset-l2 scale-transition ${!participation ? 'non-participation' : ''}"
-					style="position:relative;"
-					id="user-${id}">
-					<div class="card-panel grey lighten-5 z-depth-1">
-						${participation
-							? ''
-							: '<span class="mask-overlay" style=""></span>'
-						}
-						<div class="row valign-wrapper">
-							<div class="col s2">
-								<img src="avatars/${avatar}"
-									alt=""
-									class="circle responsive-img"
-									style="padding-top:1.25em;" /> 
-							</div>
-							<div class="col s10">
-								<div class="name">
-									<p>${name}</p>
-								</div>
-							<div class="row1" style="margin-top:2%;">
-								${participation
-									? wish
-										? `<span class="black-text">${wish}</span>`
-										: `<span class="grey-text disabled">Участники іще не вибрав побажання</span>`
-									: '<span class="grey-text disabled">Колега відмовився від участі</span>'
-								}								
-							</div>
-						</div>
-					</div>
-					<div class="card-buttons">
-						${participation
-							? '<a class="waves-effect waves-light btn-small modal-trigger" href="#remove-modal">Відмовитись від участі 😥</a>'
-							: '<a class="waves-effect waves-light btn-small">Я передумав, і хочу прийняти участь 👍</a>'
-						}			
-						${participation
-							? `<a class="waves-effect waves-light btn-small">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a>`
-							: ''
-						}			
-					</div>
-				</div>
-			</div>              	
-			`;
-	}
-	return html;
-}
 
 function throttle(func, wait) {
 	var args,
