@@ -88,10 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var addHideClass = (el, hideClass = global.classes.HIDE, timeout = 300) => {
 	if (!el.classList.contains(hideClass)) {
-		el.dataset.hidden = "1";
-
 		el.classList.add(global.classes.SCALE_OUT)
 		el.classList.remove(global.classes.SCALE_IN);
+
+		toggleHiddenData(el, true);
+
 		setTimeout(() => {
 			(function (elem) {
 				elem.classList.add(hideClass);
@@ -103,9 +104,11 @@ var removeHideClass = (el, hideClass = global.classes.HIDE, timeout = 100) => {
 	if (el.classList.contains(hideClass)) {
 		el.classList.remove(hideClass);
 
-		if (!el.classList.contains(global.classes.ACTIVE_ONLY_HIDE)) {
-			el.dataset.hidden = "";
-		} 
+		/*Check - the element is still hidden */
+		var secondaryHideClass = hideClass === global.classes.HIDE
+								? global.classes.ACTIVE_ONLY_HIDE
+								: global.classes.HIDE;
+		toggleHiddenData(el, el.classList.contains(secondaryHideClass));
 
 		setTimeout(() => {
 			(function (elem) {
@@ -114,6 +117,10 @@ var removeHideClass = (el, hideClass = global.classes.HIDE, timeout = 100) => {
 			})(el)
 		}, timeout);
 	}
+}
+
+function toggleHiddenData(el, fromSwitch, fromFilter) {
+	el.dataset.hidden= (fromSwitch || fromFilter) ? '1':'';
 }
 
 var toggleCardsClass = (val) => (data) => {
@@ -151,6 +158,7 @@ function toggleNoDisplayedUserCards() {
 				hiddenCardsCount++;
 			}
 		}
+		console.log(hiddenCardsCount, global.DATA.length);
 		if (hiddenCardsCount === global.DATA.length) {
 			var fromActiveText = global.state.SHOW_ACTIVE_ONLY ? ', серед активних учасників' : '';
 			var fromFilterText = global.state.FILTER_TEXT ? `,чиє ім'я починалось би з <b>${ global.state.FILTER_TEXT}</b>`:'';
@@ -160,7 +168,7 @@ function toggleNoDisplayedUserCards() {
 		} else {
 			this.noActiveUsersWrapper.classList.add(global.classes.HIDE);
 		}
-	}, 100)
+	}, 300)
 }
 
 function subscribeAddWishBtn() {
