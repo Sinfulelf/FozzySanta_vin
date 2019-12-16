@@ -1,76 +1,108 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Таємний Санта TemaBit</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js"></script>
+  </head>
 
-<head>
-  <title>Таємний Санта TemaBit</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <link rel="stylesheet" href="style.css" />
-  <script src="index.js"></script>
-  <!--<script src="avatars.js"></script>-->
-</head>
-
-<body>
-  <div id="root-wrapper">
-    <div id="root" class="content-wrapper z-depth-3">
-      <nav id="nav" class="nav-extended navbar-fixed purple darken-4">
-        <div class="nav-wrapper col s18">
-          <a href="#!" class="brand-logo">
-            TemaBit Таємний Санта
-            <label style="font-style: inherit;font-size: 26px;vertical-align: top;">🎁</label>
-          </a>
-        </div>
-        <div class="nav-content">
-          <ul id="nav-tabs" class="tabs tabs-transparent">
-            <li class="tab">
-              <a class="active waves-effect waves-light" href="#test1">Учасники</a>
-            </li>
-            <li class="tab">
-              <a class="waves-effect waves-light" href="#test2">Правила</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div id="main-content" class="card ">
-        <div class="row s12" style="height:.1%;"></div>
-        <div id="test1" class="col s12" style="display:flex;align-items:center;justify-content:center;">
-          <div class="wrapper">
-            <div class="row s12">
-              <div class="col s1" style="padding: 30px 0; "></div>
-              <div class="input-field col s8 center-align" style="text-align: center;max-width:300px;">
-                <input id="user_name" type="text" placeholder="Толiк, Cаша, Iгор" class="validate" />
-                <label class="active" for="user_name">Ім'я учасника:</label>
+  <body>
+    <div id="root-wrapper">
+      <div id="root" class="content-wrapper z-depth-3">
+        <nav id="nav" class="nav-extended navbar-fixed purple darken-4">
+          <div class="nav-wrapper col s18">
+            <a href="#!" class="brand-logo">
+              TemaBit Таємний Санта
+              <label
+                style="font-style: inherit;font-size: 26px;vertical-align: top;"
+                >🎁</label
+              >
+            </a>
+          </div>
+          <div class="nav-content">
+            <ul id="nav-tabs" class="tabs tabs-transparent">
+              <li class="tab">
+                <a class="active waves-effect waves-light" href="#participants"
+                  >Учасники</a
+                >
+              </li>
+              <li class="tab">
+                <a class="waves-effect waves-light" href="#rules">Правила</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div id="main-content" class="card ">
+          <div class="row s12" style="height:.1%;"></div>
+          <div
+            id="participants"
+            class="col s12"
+            style="display:flex;align-items:center;justify-content:center;"
+          >
+            <div class="wrapper">
+              <div class="row s12">
+                <div class="col s1" style="padding: 30px 0; "></div>
+                <div
+                  class="input-field col s6 center-align"
+                  style="text-align: center;max-width:300px;"
+                >
+                  <input
+                    id="user_name"
+                    type="text"
+                    placeholder="Толiк, Cаша, Iгор"
+                    class="validate"
+                  />
+                  <label class="active" for="user_name">Ім'я учасника:</label>
+                </div>
+                <div class="input-field col s4" style="float: right;padding-top: 15px;">
+                  <div class="switch" id="active_switch">
+                    <label>
+                      Активні
+                      <input id="active_switch_checkbox" type="checkbox" checked="checked"/>
+                      <span class="lever"></span>
+                      Усі
+                    </label>
+                  </div>
+                  <label class="active" for="sex_switch">Тип учасників:</label>
+                </div>
               </div>
-            </div>
-            <div id="users" class="row col s12">
-              <div class="progress container" style="margin-top:20%;">
-                <div class="indeterminate"></div>
+              <div id="users" class="row col s12">
+                <div class="progress container" style="margin-top:20%;">
+                  <div class="indeterminate"></div>
+                </div>
               </div>
             </div>
           </div>
+          <div id="rules" class="col s12"></div>
         </div>
-        <div id="test2" class="col s12">
-        </div>
-        <div id="test3" class="col s12"></div>
       </div>
     </div>
-  </div>
-  <div id="remove-modal" class="modal">
-    <div class="modal-content">
-      <h4>Видалити учасника з таємного санти?</h4>
-      <p style="font-size: 16px;">
-        Ви насправді бажаєте видалити учасника з участі у розіграші таємного
-        санти?
-      </p>
+    <div id="remove-modal" class="modal">
+      <div class="modal-content">
+        <h4>Видалити учасника з таємного санти?</h4>
+        <p style="font-size: 16px;">
+          Ви насправді бажаєте видалити учасника з участі у розіграші таємного
+          санти?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a
+          id="remove-myself"
+          href="#!"
+          class="modal-close waves-effect waves-green btn-flat"
+          >Насправді хочу відмовитись від участі!</a
+        >
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat"
+          >Відмінити</a
+        >
+      </div>
     </div>
-    <div class="modal-footer">
-      <a id="remove-myself" href="#!" class="modal-close waves-effect waves-green btn-flat">Насправді хочу відмовитись
-        від участі!</a>
-      <a href="#!" class="modal-close waves-effect waves-red btn-flat">Відмінити</a>
-    </div>
-  </div>
-</body>
-
+  </body>
 </html>

@@ -1,6 +1,15 @@
 var global = {
 	USERS_URL: 'https://api.myjson.com/bins/12z7p4',
-	DATA: []
+	DATA: [],
+	classes: {
+		SCALE_OUT: 'scale-out',
+		SCALE_IN: 'scale-in',
+		HIDE: 'hide',
+		SHOW_ACTIVE_ONLY: 'active-only'
+	},
+	state: {
+		SHOW_ACTIVE_ONLY: false
+	}
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -22,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		for (var [key, value] of Object.entries(request)) {
 			value.id = key;
 			data.push(value);
-		  }
+		}
 
 		var SortedBtActivity = data.sort((a, b) => b.participation - a.participation);
 
@@ -33,52 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		filterAfterDataLoading(global.DATA);
 	});
 
-	document.getElementById('user_name').addEventListener('input', function () {
+	var input = document.getElementById('user_name');
+
+	input.addEventListener('input', function () {
 		var value = this.value.toLowerCase();
-
-		var scaleOutClass  = 'scale-out';
-		var scaleInClass = 'scale-in';
-		var hideClass = 'hide';
-
-		var removeClass = el => {
-			if (!el.classList.contains(hideClass)) {
-				el.classList.add(scaleOutClass )
-				el.classList.remove(scaleInClass);
-				setTimeout(() => {
-					(function (elem) {
-						el.classList.add(hideClass);
-					})(el)
-				}, 300);
-			}
-		}
-		var addClass = el => {
-			if (el.classList.contains(hideClass)) {
-				el.classList.remove(hideClass);
-				setTimeout(() => {
-					(function (elem) {						
-						el.classList.remove(scaleOutClass);
-						el.classList.add(scaleInClass);
-					})(el)
-				}, 100);
-				
-			}
-		}
-
-		var toggleCardsClass = ((val) => (data) => {
-			data.forEach(item => {
-				var name = item.name.toLowerCase();
-				var subName = (item.bonus_name || '').toLowerCase();
-
-				var element = document.getElementById(`user-${item.id}`);
-
-				if (name.indexOf(value) !== -1 || subName.indexOf(value) !== -1)
-					addClass(element);
-				else
-					removeClass(element);
-			});
-		})(value)
-
-		var throttledToggle =  throttle(toggleCardsClass, 250);
+		var throttledToggle = throttle(toggleCardsClass(value), 250);
 
 		if (global.DATA.length) {
 			throttledToggle(global.DATA);
@@ -89,9 +57,67 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		}
 	}, true);
+	if (input.value) {
+		filterAfterDataLoading = (data) => {
+			toggleCardsClass(input.value)(data);
+			filterAfterDataLoading = (d) => false;
+		}
+	}
 
-
+	var switcher = document.getElementById('active_switch_checkbox');
+	switcher.addEventListener('change', function (event) {
+		if (!this.participants) {
+			this.participants = document.getElementById('participants');
+		}
+		setTimeout(() => {
+			global.state.SHOW_ACTIVE_ONLY = !this.checked;
+			if (global.state.SHOW_ACTIVE_ONLY &&
+				!this.participants.classList.contains(global.classes.SHOW_ACTIVE_ONLY)) {
+				this.participants.classList.add(global.classes.SHOW_ACTIVE_ONLY);
+			} else if (!global.state.SHOW_ACTIVE_ONLY &&
+				this.participants.classList.contains(global.classes.SHOW_ACTIVE_ONLY)) {
+					this.participants.classList.remove(global.classes.SHOW_ACTIVE_ONLY);
+			}
+		});
+	})
 });
+
+var removeCardsClass = el => {
+	if (!el.classList.contains(global.classes.HIDE)) {
+		el.classList.add(global.classes.SCALE_OUT)
+		el.classList.remove(global.classes.SCALE_IN);
+		setTimeout(() => {
+			(function (elem) {
+				elem.classList.add(global.classes.HIDE);
+			})(el)
+		}, 300);
+	}
+}
+var addCardsClass = el => {
+	if (el.classList.contains(global.classes.HIDE)) {
+		el.classList.remove(global.classes.HIDE);
+		setTimeout(() => {
+			(function (elem) {
+				elem.classList.remove(global.classes.SCALE_OUT);
+				elem.classList.add(global.classes.SCALE_IN);
+			})(el)
+		}, 100);
+	}
+}
+
+var toggleCardsClass = (val) => (data) => {
+	data.forEach(item => {
+		var name = item.name.toLowerCase();
+		var subName = (item.bonus_name || '').toLowerCase();
+
+		var element = document.getElementById(`user-${item.id}`);
+
+		if (name.indexOf(val) !== -1 || subName.indexOf(val) !== -1)
+			addCardsClass(element);
+		else
+			removeCardsClass(element);
+	});
+};
 
 function getUsers(callback) {
 	var request = new XMLHttpRequest();
@@ -127,7 +153,7 @@ function buildCards(data) {
 
 		html += `			
 				<div
-					class="col s12 m10 offset-m1 l8 offset-l2 scale-transition"
+					class="col s12 m10 offset-m1 l8 offset-l2 scale-transition ${!participation ? 'non-participation' : ''}"
 					style="position:relative;"
 					id="user-${id}">
 					<div class="card-panel grey lighten-5 z-depth-1">
@@ -167,40 +193,40 @@ function buildCards(data) {
 						}			
 					</div>
 				</div>
-			</div>            	
+			</div>              	
 			`;
 	}
 	return html;
 }
 
 function throttle(func, wait) {
-    var args,
-        result,
-        thisArg,
-        timeoutId,
-        lastCalled = 0;
+	var args,
+		result,
+		thisArg,
+		timeoutId,
+		lastCalled = 0;
 
-    function trailingCall() {
-      lastCalled = new Date;
-      timeoutId = null;
-      result = func.apply(thisArg, args);
-    }
+	function trailingCall() {
+		lastCalled = new Date;
+		timeoutId = null;
+		result = func.apply(thisArg, args);
+	}
 
-    return function() {
-      var now = new Date,
-          lastCalled = lastCalled || new Date,
-          remain = wait - (now - lastCalled);
+	return function () {
+		var now = new Date,
+			lastCalled = lastCalled || new Date,
+			remain = wait - (now - lastCalled);
 
-      args = arguments;
-      thisArg = this;
+		args = arguments;
+		thisArg = this;
 
-      if (remain <= 0) {
-        lastCalled = now;
-        result = func.apply(thisArg, args);
-      }
-      else if (!timeoutId) {
-        timeoutId = setTimeout(trailingCall, remain);
-      }
-      return result;
-    };
+		if (remain <= 0) {
+			lastCalled = now;
+			result = func.apply(thisArg, args);
+		}
+		else if (!timeoutId) {
+			timeoutId = setTimeout(trailingCall, remain);
+		}
+		return result;
+	};
 }
