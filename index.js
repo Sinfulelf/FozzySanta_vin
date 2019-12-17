@@ -100,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			changeSantaParticipation(global.SELECTED_USER_ID, false, getUpdateUserCardCallback(global.SELECTED_USER_ID, () => {global.NOTIFICATION_MODAL.open()}));
 		}, 16);
 	});
+
+    var collapsible = M.Collapsible.init( document.querySelectorAll('.collapsible'), {});
 });
 
 var addHideClass = (el, hideClass = global.classes.HIDE, timeout = 300) => {

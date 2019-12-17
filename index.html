@@ -5,21 +5,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!--1-->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <!--1-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--2-->
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--3-->
-    <script src="htmlBuilder.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <!--4-->
-    <script src="httpHelper.js"></script>
+    <script src="htmlBuilder.js"></script>
     <!--5-->
-    <script src="index.js"></script>
+    <script src="httpHelper.js"></script>
     <!--6-->
+    <script src="index.js"></script>
+    <!--7-->
   </head>
   <body>
     <div id="root-wrapper">
@@ -101,7 +102,30 @@
               </div>
             </div>
           </div>
-          <div id="rules" class="col s12"></div>
+          <div id="rules" class="col s12">
+            <div class="container">
+              <ul class="collapsible">
+                <li>
+                  <div class="collapsible-header">▼ Розбираємо подарунки в суботу 21-го після обіду</div>
+                  <div class="collapsible-body" style="text-align: center;">
+                    <img src="Rules/slow.png" />
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">▼ Сума до 200 грн</div>
+                  <div class="collapsible-body" style="text-align: center; position: relative;">
+                    <img src="Rules/drake.jpg" style="width: 75%; height: 75%;"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">▼ Third</div>
+                  <div class="collapsible-body">
+                    <span>Lorem ipsum dolor sit amet.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -127,9 +151,11 @@
     </div>
     <div id="notification-modal" class="modal">
       <div class="modal-content">
-        <h4 style="text-align: center;">Будь-ласка, не забудьте повідомити 
+        <h4 style="text-align: center;">
+          Будь-ласка, не забудьте повідомити
           <p>
-            <a href="viber://chat?number=+380938877771">Анастасію</a> чи <a href="viber://chat?number=+380635845389">Вікторію</a>
+            <a href="viber://chat?number=+380938877771">Анастасію</a> чи
+            <a href="viber://chat?number=+380635845389">Вікторію</a>
           </p>
         </h4>
       </div>
