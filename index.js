@@ -161,7 +161,7 @@ function toggleNoDisplayedUserCards() {
 		console.log(hiddenCardsCount, global.DATA.length);
 		if (hiddenCardsCount === global.DATA.length) {
 			var fromActiveText = global.state.SHOW_ACTIVE_ONLY ? ', серед активних учасників' : '';
-			var fromFilterText = global.state.FILTER_TEXT ? `,чиє ім'я починалось би з <b>${ global.state.FILTER_TEXT}</b>`:'';
+			var fromFilterText = global.state.FILTER_TEXT ? `, чиє ім'я починалось би з <b>${ global.state.FILTER_TEXT}</b>`:'';
 			this.noActiveUsersText.innerHTML = `Нажаль, не вдалося знайти нікого${fromActiveText}${fromFilterText}`;
 
 			removeHideClass(this.noActiveUsersWrapper, global.classes.HIDE, 50);
