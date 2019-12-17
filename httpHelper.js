@@ -34,3 +34,19 @@ function updateUserWish(id, wish, callback) {
 			callback();
 		});
 }
+
+function changeSantaParticipation (id, participation, callback) {
+	(global.DATA.find(ob => ob.id === id) || {}).participation = participation;
+
+	fetch(getRoute(['id_'+id, 'participation']), {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(participation)
+	})
+		.then(res => res.json())
+		.then(data => {
+			callback();
+		});
+}

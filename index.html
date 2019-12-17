@@ -4,7 +4,7 @@
     <title>Таємний Санта TemaBit</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -24,7 +24,11 @@
   <body>
     <div id="root-wrapper">
       <div id="root" class="content-wrapper z-depth-3">
-        <nav id="nav" class="nav-extended navbar-fixed" style="background:#267DA6">
+        <nav
+          id="nav"
+          class="nav-extended navbar-fixed"
+          style="background:#267DA6"
+        >
           <div class="nav-wrapper col s12">
             <a href="#!" class="brand-logo">
               TemaBit Таємний Санта
@@ -67,7 +71,9 @@
                     placeholder="Толiк, Cаша, Iгор"
                     class="validate"
                   />
-                  <label class="active" id="user_name-label" for="user_name">Ім'я учасника:</label>
+                  <label class="active" id="user_name-label" for="user_name"
+                    >Ім'я учасника:</label
+                  >
                 </div>
                 <div
                   class="input-field col s6 m4"
@@ -109,7 +115,7 @@
       </div>
       <div class="modal-footer">
         <a
-          id="remove-myself"
+          id="remove-user"
           href="#!"
           class="modal-close waves-effect waves-green btn-flat"
           >Насправді хочу відмовитись від участі!</a
@@ -117,6 +123,15 @@
         <a href="#!" class="modal-close waves-effect waves-red btn-flat"
           >Відмінити</a
         >
+      </div>
+    </div>
+    <div id="notification-modal" class="modal">
+      <div class="modal-content">
+        <h4 style="text-align: center;">Будь-ласка, не забудьте повідомити 
+          <p>
+            <a href="viber://chat?number=+380938877771">Анастасію</a> чи <a href="viber://chat?number=+380635845389">Вікторію</a>
+          </p>
+        </h4>
       </div>
     </div>
   </body>

@@ -1,6 +1,9 @@
 var global = {
 	USERS_URL: 'https://temabitsanta.firebaseio.com',
+	LAST_DATE: new Date(2019, 12, 19),
 	DATA: [],
+	SELECTED_USER_ID: null,
+	NOTIFICATION_MODAL: null,
 	classes: {
 		USER_CARD: 'user-card',
 		SCALE_OUT: 'scale-out',
@@ -8,7 +11,9 @@ var global = {
 		HIDE: 'hide',
 		ACTIVE_ONLY_HIDE: 'active-only-hide',
 		NON_PARTICIPATION: 'non-participation',
-		WISH_BTN: 'wish-btn'
+		WISH_BTN: 'wish-btn',
+		LEAVE_BTN: 'leave-btn',
+		ENTER_BTN: 'enter-btn'
 	},
 	state: {
 		SHOW_ACTIVE_ONLY: false,
@@ -24,8 +29,12 @@ document.addEventListener('DOMContentLoaded', function () {
 		duration: 300
 	});
 
-	var modal = M.Modal.init(document.querySelectorAll('.modal'), {
+	var removeModal = M.Modal.init(document.getElementById('remove-modal'), {
 		opacity: 0.7
+	});
+
+	global.NOTIFICATION_MODAL = M.Modal.init(document.getElementById('notification-modal'), {
+		opacity: 0.6
 	});
 
 	////getUsers -> f(callback)- From httpHelper.js
@@ -36,14 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		var users = document.getElementById('users');
 
 		var SortedByActivity = data.filter(el => el.id)
-									.sort((a, b) => a.id - b.id)
-									.sort((a, b) => b.participation - a.participation);
+			.sort((a, b) => a.id - b.id)
+			.sort((a, b) => b.participation - a.participation);
 
 		global.DATA = SortedByActivity;
 		//buildCards -> f(data)- From htmlBuilder.js 
 		users.innerHTML = buildCards(SortedByActivity);
-		
-		subscribeAddWishBtn();
+
+		SubsribeBtns();
+
 		filterAfterDataLoading(global.DATA);
 	}, toggleNoDisplayedUserCards);
 
@@ -83,6 +93,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			toggleNoDisplayedUserCards();
 		});
 	});
+
+	var leaveConfirmBtn = document.getElementById('remove-user');
+	leaveConfirmBtn.addEventListener('click', function () {
+		setTimeout(() => {
+			changeSantaParticipation(global.SELECTED_USER_ID, false, getUpdateUserCardCallback(global.SELECTED_USER_ID, () => {global.NOTIFICATION_MODAL.open()}));
+		}, 16);
+	});
 });
 
 var addHideClass = (el, hideClass = global.classes.HIDE, timeout = 300) => {
@@ -105,8 +122,8 @@ var removeHideClass = (el, hideClass = global.classes.HIDE, timeout = 100) => {
 
 		/*Check - the element is still hidden */
 		var secondaryHideClass = hideClass === global.classes.HIDE
-								? global.classes.ACTIVE_ONLY_HIDE
-								: global.classes.HIDE;
+			? global.classes.ACTIVE_ONLY_HIDE
+			: global.classes.HIDE;
 		toggleHiddenData(el, el.classList.contains(secondaryHideClass));
 
 		setTimeout(() => {
@@ -119,7 +136,7 @@ var removeHideClass = (el, hideClass = global.classes.HIDE, timeout = 100) => {
 }
 
 function toggleHiddenData(el, fromSwitch, fromFilter) {
-	el.dataset.hidden= (fromSwitch || fromFilter) ? '1':'';
+	el.dataset.hidden = (fromSwitch || fromFilter) ? '1' : '';
 }
 
 var toggleCardsClass = (val) => (data) => {
@@ -127,8 +144,6 @@ var toggleCardsClass = (val) => (data) => {
 		var names = item.name.toLowerCase().split(' ');
 
 		var subName = (item.bonus_name || '').toLowerCase();
-
-		console.log(item);
 
 		var element = document.getElementById(`user-${item.id}`);
 
@@ -161,7 +176,7 @@ function toggleNoDisplayedUserCards() {
 		}
 		if (hiddenCardsCount === global.DATA.length) {
 			var fromActiveText = global.state.SHOW_ACTIVE_ONLY ? ', серед активних учасників' : '';
-			var fromFilterText = global.state.FILTER_TEXT ? `, чиє ім'я починалось би з <b>${ global.state.FILTER_TEXT}</b>`:'';
+			var fromFilterText = global.state.FILTER_TEXT ? `, чиє ім'я починалось би з <b>${global.state.FILTER_TEXT}</b>` : '';
 			this.noActiveUsersText.innerHTML = `Нажаль, не вдалося знайти нікого${fromActiveText}${fromFilterText}`;
 
 			removeHideClass(this.noActiveUsersWrapper, global.classes.HIDE, 50);
@@ -171,14 +186,56 @@ function toggleNoDisplayedUserCards() {
 	}, 300)
 }
 
-function subscribeAddWishBtn() {
-	var wishBtn = document.getElementsByClassName(global.classes.WISH_BTN);
-	for(var i=0; i < wishBtn.length; i++) {		
-		wishBtn[i].addEventListener('click', function() {
-			var id = this.dataset.userid;
-			addWishTextArea(id, global.DATA.find(obj => obj.id === id).wish);
-		})
+function SubsribeBtns() {
+	subscribeWishBtn();
+	subscribeLeaveBtn();
+	subscribeEnterBtn();
+	addTooltips();
+}
+
+function subscribeLeaveBtn() {
+	var leaveBtns = document.getElementsByClassName(global.classes.LEAVE_BTN);
+
+	for (var i = 0; i < leaveBtns.length; i++) {
+		if (!leaveBtns[i].dataset.subscribed) {
+			leaveBtns[i].dataset.subscribed = '1';
+			leaveBtns[i].addEventListener('click', function () {
+				global.SELECTED_USER_ID = this.dataset.userid;
+			});
+		}
 	}
+}
+
+function subscribeEnterBtn() {
+	var enterBtns = document.getElementsByClassName(global.classes.ENTER_BTN);
+
+	for (var i = 0; i < enterBtns.length; i++) {
+		if (!enterBtns[i].dataset.subscribed) {
+			enterBtns[i].dataset.subscribed = '1';
+			enterBtns[i].addEventListener('click', function () {
+				setTimeout(() => {
+					changeSantaParticipation(this.dataset.userid, true, getUpdateUserCardCallback(this.dataset.userid, () => {global.NOTIFICATION_MODAL.open()}));
+				}, 16);
+			});
+		}
+	}
+}
+
+function subscribeWishBtn() {
+	var wishBtn = document.getElementsByClassName(global.classes.WISH_BTN);
+	for (var i = 0; i < wishBtn.length; i++) {
+		if (!wishBtn[i].dataset.subscribed) {
+			wishBtn[i].dataset.subscribed = '1';
+			wishBtn[i].addEventListener('click', function () {
+				var id = this.dataset.userid;
+				addWishTextArea(id, global.DATA.find(obj => obj.id === id).wish);
+			});
+		}
+	}
+}
+
+function addTooltips() {
+	var tooltip = M.Tooltip.init(document.querySelectorAll('.tooltipped'), {});
 }
 
 function throttle(func, wait) {

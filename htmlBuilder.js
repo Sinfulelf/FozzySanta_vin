@@ -44,7 +44,7 @@ function buildCardData(participation, id, wish, name, avatar) {
 				<div class="name">
 					<p>${name}</p>
 				</div>
-				<div class="" id="wish-container-${id}" style="margin-top:2%;">
+				<div class="" id="wish-container-${id}" style="margin-top:2%;max-height:10em;text-overflow:ellipsis;">
 					${buildCardsWish(participation, wish)}
 				</div>
 			</div>
@@ -72,8 +72,18 @@ function buildCardsWish(participation, wish) {
 function buildCardsButtons(participation, id, wish) {
 	var result = '';
 	result += participation
-		? `<a data-userid="${id}" class="waves-effect waves-light btn-small modal-trigger" href="#remove-modal">Відмовитись від участі 😥</a> `
-		: `<a data-userid="${id}" class="waves-effect waves-light btn-small">Я передумав, і хочу прийняти участь 👌</a> `;
+		? (global.LAST_DATE - Date.now()) > 0
+			? `<a data-userid="${id}" class="waves-effect waves-light btn-small modal-trigger leave-btn" href="#remove-modal">Відмовитись від участі 😥</a> `
+			: `<a class="waves-effect waves-light btn-small modal-trigger btn tooltipped grey lighten-1"
+					data-position="bottom" data-tooltip="Крайній термін був 19-го числа">
+						Відмовитись від участі
+				</a> `
+		: (global.LAST_DATE - Date.now()) > 0
+			? `<a data-userid="${id}" class="waves-effect waves-light btn-small enter-btn">Я передумав, і хочу прийняти участь 👌</a> `
+			: `<a class="waves-effect waves-light btn-small tooltipped grey lighten-1"
+					data-position="bottom" data-tooltip="Крайній термін був 19-го числа">
+						Я передумав, і хочу прийняти участь
+				</a> `;
 	result += participation
 		? `<a data-userid="${id}" class="waves-effect waves-light btn-small wish-btn">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a> `
 		: '';
@@ -106,12 +116,13 @@ function addWishTextArea(id, originalWish) {
 				<div class="input-field col s12">
 					<textarea id="${textAreaId}"
 								class="materialize-textarea"
+								maxlength="255"
 								style="text-overflow: ellipsis;
 										word-wrap: break-word;
 										overflow: auto;
 										height: 3em;
 										padding: 3px 0;
-										max-height: 3.3em;
+										max-height: 4.3em;
 										line-height: 1.25em;
 										background:#e6e4e4;
 										margin-bottom: -20px;"
@@ -130,17 +141,25 @@ function addWishTextArea(id, originalWish) {
 					+ buildCardWaiter(id)
 					+ buildCardsWish(true, this.value);
 
-				var callback = (function () {
-					var userId = id;
-					return function () {
-						var { participation, id, wish, name, avatar } = global.DATA.find(user => user.id == userId);
-						document.getElementById(`user-${id}`).innerHTML = buildCardData(participation, id, wish, name, avatar);
-					}
-				}());
+				var callback = getUpdateUserCardCallback(id);
 
 				updateUserWish(id, this.value, callback);
 			});
 			ta.focus();
 		});
 	})(id, container, originalWish)
+}
+
+function getUpdateUserCardCallback(id, callback) {
+	var userId = id;
+	return function () {
+		var { participation, id, wish, name, avatar } = global.DATA.find(user => user.id == userId);
+		document.getElementById(`user-${id}`).innerHTML = buildCardData(participation, id, wish, name, avatar);
+
+		SubsribeBtns();
+
+		if (callback) {
+			callback()
+		}
+	}
 }
