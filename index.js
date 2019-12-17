@@ -1,5 +1,5 @@
 var global = {
-	USERS_URL: 'https://api.myjson.com/bins/12z7p4',
+	USERS_URL: 'https://jsonstorage.net/api/items/bb2e2b3a-38e4-4ca3-b6a2-79b2bdf5587c',
 	DATA: [],
 	classes: {
 		USER_CARD: 'user-card',
@@ -29,14 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	////getUsers -> f(callback)- From httpHelper.js
-	getUsers(function (request) {
+	getUsers(function (data) {
 		var users = document.getElementById('users');
-
-		var data = [];
-		for (var [key, value] of Object.entries(request)) {
-			value.id = key;
-			data.push(value);
-		}
 
 		var SortedByActivity = data.sort((a, b) => b.participation - a.participation);
 
@@ -158,7 +152,6 @@ function toggleNoDisplayedUserCards() {
 				hiddenCardsCount++;
 			}
 		}
-		console.log(hiddenCardsCount, global.DATA.length);
 		if (hiddenCardsCount === global.DATA.length) {
 			var fromActiveText = global.state.SHOW_ACTIVE_ONLY ? ', серед активних учасників' : '';
 			var fromFilterText = global.state.FILTER_TEXT ? `, чиє ім'я починалось би з <b>${ global.state.FILTER_TEXT}</b>`:'';
@@ -176,8 +169,7 @@ function subscribeAddWishBtn() {
 	for(var i=0; i < wishBtn.length; i++) {		
 		wishBtn[i].addEventListener('click', function() {
 			var id = this.dataset.userid;
-			console.log(1);
-			addWishTextArea(id);
+			addWishTextArea(id, global.DATA.find(obj => obj.id === id).wish);
 		})
 	}
 }

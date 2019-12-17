@@ -1,23 +1,28 @@
 function getUsers(callback, errorCallback) {
-	var request = new XMLHttpRequest();
-	request.open('GET', global.USERS_URL, true);
-
-	request.onload = function () {
-		if (request.status >= 200 && request.status < 400) {
-			var data = JSON.parse(request.responseText);
-			if (callback && typeof (callback) === 'function') {
-				callback(data);
-			}
-		} else {
+	fetch(global.USERS_URL, {
+		method: 'GET'
+	})
+		.then(response => response.json())
+		.then(data => { callback(data); })
+		.catch(error => {
 			callback([]);
 			errorCallback();
-		}
-	};
+		});
+}
 
-	request.onerror = function () {
-		callback([]);
-		errorCallback();
-	};
+function updateUserWish(id, wish, callback) {
+	global.DATA.find(obj => obj.id === id).wish = wish;
 
-	request.send();
+	fetch(global.USERS_URL, {
+		method: 'PUT',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(global.DATA)
+	})
+		.then(res => res.json())
+		.then(data => {
+			callback();
+		});
 }
