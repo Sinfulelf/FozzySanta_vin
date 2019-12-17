@@ -2,7 +2,6 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0;
-
 }
 
 html {
@@ -19,7 +18,6 @@ body {
 }
 
 #root-wrapper {
-
     width: 100%;
     height: 100%;
     position: relative;
@@ -52,6 +50,8 @@ body {
 .wrapper {
     width: 100%;
     max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*
@@ -103,6 +103,18 @@ body {
     display: none;
 }
 
+.collapsible-body {
+    text-align: center;
+    position: relative;
+}
+
+.collapsible-body > img {
+    width: 75%;
+    height: 75%;
+    max-width: 550px;
+    max-height: 550px;
+}
+
 /*MEDIA*/
 
 @media (max-width: 760px) {
@@ -117,7 +129,6 @@ body {
         line-height: 28px;
     }
 }
-
 
 @media (max-width: 625px) {
     .tab.disabled {
