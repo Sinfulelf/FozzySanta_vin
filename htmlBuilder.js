@@ -98,7 +98,6 @@ function buildCardWaiter(id) {
 
 function addWishTextArea(id, originalWish) {
 	var container = document.getElementById('wish-container-' + id);
-
 	var textAreaId = `textarea-${id}`;
 
 	container.innerHTML = `
