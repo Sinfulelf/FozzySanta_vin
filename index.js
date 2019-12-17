@@ -1,5 +1,5 @@
 var global = {
-	USERS_URL: 'https://jsonstorage.net/api/items/bb2e2b3a-38e4-4ca3-b6a2-79b2bdf5587c',
+	USERS_URL: 'https://temabitsanta.firebaseio.com',
 	DATA: [],
 	classes: {
 		USER_CARD: 'user-card',
@@ -29,10 +29,15 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	////getUsers -> f(callback)- From httpHelper.js
-	getUsers(function (data) {
+	getUsers(function (response) {
+		var data = Object.values(response);
+
+
 		var users = document.getElementById('users');
 
-		var SortedByActivity = data.sort((a, b) => b.participation - a.participation);
+		var SortedByActivity = data.filter(el => el.id)
+									.sort((a, b) => a.id - b.id)
+									.sort((a, b) => b.participation - a.participation);
 
 		global.DATA = SortedByActivity;
 		//buildCards -> f(data)- From htmlBuilder.js 
@@ -122,6 +127,8 @@ var toggleCardsClass = (val) => (data) => {
 		var names = item.name.toLowerCase().split(' ');
 
 		var subName = (item.bonus_name || '').toLowerCase();
+
+		console.log(item);
 
 		var element = document.getElementById(`user-${item.id}`);
 

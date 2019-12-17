@@ -1,5 +1,14 @@
+function getRoute(routeParams) {
+	var route = global.USERS_URL;
+	for(var param of (routeParams || [])) {
+		route += `/${param}`;
+	}
+	route += '/.json';
+	return route;
+}
+
 function getUsers(callback, errorCallback) {
-	fetch(global.USERS_URL, {
+	fetch(getRoute(), {
 		method: 'GET'
 	})
 		.then(response => response.json())
@@ -11,15 +20,14 @@ function getUsers(callback, errorCallback) {
 }
 
 function updateUserWish(id, wish, callback) {
-	global.DATA.find(obj => obj.id === id).wish = wish;
+	(global.DATA.find(ob => ob.id === id) || {}).wish = wish;
 
-	fetch(global.USERS_URL, {
+	fetch(getRoute(['id_'+id, 'wish']), {
 		method: 'PUT',
 		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(global.DATA)
+		body: JSON.stringify(wish)
 	})
 		.then(res => res.json())
 		.then(data => {
