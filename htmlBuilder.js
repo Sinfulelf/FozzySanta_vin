@@ -127,7 +127,7 @@ function addWishTextArea(id, originalWish) {
 										background:#e6e4e4;
 										margin-bottom: -20px;"
 					></textarea>
-					<label for="${textAreaId}" class="">Побажання</label>
+					<label for="${textAreaId}" class="">Інтереси</label>
 				</div>
 			</div>
 		</form>
