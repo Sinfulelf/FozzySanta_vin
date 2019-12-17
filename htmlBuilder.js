@@ -65,7 +65,7 @@ function buildCardsWish(participation, wish) {
 	return participation
 		? wish
 			? `<span class="black-text" style="font-size: 20px;">${wish}</span>`
-			: `<span class="grey-text disabled">Участники іще не вибрав побажання</span>`
+			: `<span class="grey-text disabled">Участники іще не виказав інтереси</span>`
 		: '<span class="grey-text disabled">Колега відмовився від участі</span>';
 }
 
@@ -85,7 +85,7 @@ function buildCardsButtons(participation, id, wish) {
 						Я передумав, і хочу прийняти участь
 				</a> `;
 	result += participation
-		? `<a data-userid="${id}" class="waves-effect waves-light btn-small wish-btn">${wish ? 'Змінити' : 'Залишити'} побажання 🎁</a> `
+		? `<a data-userid="${id}" class="waves-effect waves-light btn-small wish-btn">${wish ? 'Змінити' : 'Залишити'} інтереси 🐱‍🐉</a> `
 		: '';
 	return result;
 }
