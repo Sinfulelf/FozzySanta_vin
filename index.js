@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					for(var i = 0; i< helloTooltips.length; i++){
 						var elem = helloTooltips[i];
 						var source = elem.dataset.img;
-						console.log(source);
 						M.Tooltip.init(elem, {
 							html: `<div class=""><img src="tooltips/${source}" style="max-height:300px; max-width:500px;"/></div>`
 						});
