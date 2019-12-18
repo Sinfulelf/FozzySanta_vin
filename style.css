@@ -54,6 +54,10 @@ body {
     margin-right: auto;
 }
 
+.hello-tooltip {
+    cursor: pointer;
+}
+
 /*
 #participants.active-only .non-participation {
     display: none;
