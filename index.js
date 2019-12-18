@@ -99,29 +99,27 @@ document.addEventListener('DOMContentLoaded', function () {
 	var leaveConfirmBtn = document.getElementById('remove-user');
 	leaveConfirmBtn.addEventListener('click', function () {
 		setTimeout(() => {
-			changeSantaParticipation(global.SELECTED_USER_ID, false, getUpdateUserCardCallback(global.SELECTED_USER_ID, () => {global.NOTIFICATION_MODAL.open()}));
+			changeSantaParticipation(global.SELECTED_USER_ID, false, getUpdateUserCardCallback(global.SELECTED_USER_ID, () => { global.NOTIFICATION_MODAL.open() }));
 		}, 16);
 	});
 
-	var collapsible = M.Collapsible.init( document.querySelectorAll('.collapsible'), {});
-	
-	if(!localStorage.getItem('alreadyShow')) {
-		localStorage.setItem('alreadyShow', true);
+	var collapsible = M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
+
+	if (!localStorage.getItem('alreadyShow')) {
+		localStorage.setItem('alreadyShow', '1');
 
 		M.Modal.init(document.getElementById('first-open-modal'), {
 			opacity: 0.3,
 			preventScrolling: true,
 			onOpenEnd: () => {
-				setTimeout(() => {
-					var helloTooltips = document.getElementsByClassName('hello-tooltip');
-					for(var i = 0; i< helloTooltips.length; i++){
-						var elem = helloTooltips[i];
-						var source = elem.dataset.img;
-						M.Tooltip.init(elem, {
-							html: `<div class=""><img src="tooltips/${source}" style="max-height:300px; max-width:500px;"/></div>`
-						});
-					}
-				});
+				var helloTooltips = document.getElementsByClassName('hello-tooltip');
+				for (var i = 0; i < helloTooltips.length; i++) {
+					var elem = helloTooltips[i];
+					var source = elem.dataset.img;
+					M.Tooltip.init(elem, {
+						html: `<div class=""><img src="tooltips/${source}" style="max-height:300px; max-width:500px;"/></div>`
+					});
+				}
 			}
 		}).open();
 	}
@@ -239,7 +237,7 @@ function subscribeEnterBtn() {
 			enterBtns[i].dataset.subscribed = '1';
 			enterBtns[i].addEventListener('click', function () {
 				setTimeout(() => {
-					changeSantaParticipation(this.dataset.userid, true, getUpdateUserCardCallback(this.dataset.userid, () => {global.NOTIFICATION_MODAL.open()}));
+					changeSantaParticipation(this.dataset.userid, true, getUpdateUserCardCallback(this.dataset.userid, () => { global.NOTIFICATION_MODAL.open() }));
 				}, 16);
 			});
 		}
