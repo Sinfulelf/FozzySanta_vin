@@ -1,128 +1,209 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Таємний Санта TemaBit</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!--1-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <!--2-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--3-->
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <title>Таємний Санта TemaBit</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <!--1-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <!--2-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!--3-->
-  <link rel="stylesheet" href="style.css" />
-  <!--4-->
-  <script src="htmlBuilder.js"></script>
-  <!--5-->
-  <script src="httpHelper.js"></script>
-  <!--6-->
-  <script src="index.js"></script>
-  <!--7-->
-</head>
-
-<body>
-  <div id="root-wrapper">
-    <div id="root" class="content-wrapper z-depth-3">
-      <nav id="nav" class="nav-extended navbar-fixed" style="background:#267DA6">
-        <div class="nav-wrapper col s12">
-          <a href="#!" class="brand-logo">
-            TemaBit Таємний Санта
-            <label style="font-style: inherit;font-size: 26px;vertical-align: top;">🎁</label>
-          </a>
-        </div>
-        <div class="nav-content">
-          <ul id="nav-tabs" class="tabs tabs-transparent">
-            <li class="tab">
-              <a class="active waves-effect waves-light" href="#participants">Учасники</a>
-            </li>
-            <li class="tab">
-              <a class="waves-effect waves-light" href="#rules">Правила</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div id="main-content" class="card ">
-        <div class="row s12" style="height:.1%;"></div>
-        <div id="participants" class="col s12">
-          <div class="wrapper">
-            <div class="row s12">
-              <div class="col s0 m1" style="padding: 30px 0; "></div>
-              <div class="input-field col s5 m6 center-align" style="text-align: center;max-width:300px;">
-                <input id="user_name" type="text" placeholder="Толiк, Cаша, Iгор" class="validate" />
-                <label class="active" id="user_name-label" for="user_name">Ім'я учасника:</label>
-              </div>
-              <div class="input-field col s6 m4" style="float: right;padding-top: 15px;">
-                <div class="switch " id="active_switch">
-                  <label>
-                    Активні
-                    <input id="active_switch_checkbox" type="checkbox" checked="checked" />
-                    <span class="lever"></span>
-                    Усі
-                  </label>
+  <body>
+    <div id="root-wrapper">
+      <div id="root" class="content-wrapper z-depth-3">
+        <nav
+          id="nav"
+          class="nav-extended navbar-fixed"
+          style="background:#267DA6"
+        >
+          <div class="nav-wrapper col s12">
+            <a href="#!" class="brand-logo">
+              TemaBit Таємний Санта
+              <label
+                style="font-style: inherit;font-size: 26px;vertical-align: top;"
+                >🎁</label
+              >
+            </a>
+          </div>
+          <div class="nav-content">
+            <ul id="nav-tabs" class="tabs tabs-transparent">
+              <li class="tab">
+                <a class="active waves-effect waves-light" href="#participants"
+                  >Учасники</a
+                >
+              </li>
+              <li class="tab">
+                <a class="waves-effect waves-light" href="#rules">Правила</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div id="main-content" class="card ">
+          <div class="row s12" style="height:.1%;"></div>
+          <div id="participants" class="col s12">
+            <div class="wrapper">
+              <div class="row s12">
+                <div class="col s0 m1" style="padding: 30px 0; "></div>
+                <div
+                  class="input-field col s5 m6 center-align"
+                  style="text-align: center;max-width:300px;"
+                >
+                  <input
+                    id="user_name"
+                    type="text"
+                    placeholder="Толiк, Cаша, Iгор"
+                    class="validate"
+                  />
+                  <label class="active" id="user_name-label" for="user_name"
+                    >Ім'я учасника:</label
+                  >
                 </div>
-                <label class="active" for="sex_switch">Тип учасників:</label>
+                <div
+                  class="input-field col s6 m4"
+                  style="float: right;padding-top: 15px;"
+                >
+                  <div class="switch " id="active_switch">
+                    <label>
+                      Активні
+                      <input
+                        id="active_switch_checkbox"
+                        type="checkbox"
+                        checked="checked"
+                      />
+                      <span class="lever"></span>
+                      Усі
+                    </label>
+                  </div>
+                  <label class="active" for="sex_switch">Тип учасників:</label>
+                </div>
               </div>
-            </div>
-            <div id="users" class="row col s12">
-              <div class="progress container" style="margin-top:20%;">
-                <div class="indeterminate"></div>
+              <div id="users" class="row col s12">
+                <div class="progress container" style="margin-top:20%;">
+                  <div class="indeterminate"></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div id="rules" class="col s12">
-          <div class="container">
-            <ul class="collapsible">
-              <li>
-                <div class="collapsible-header">▼ Розбираємо подарунки в суботу 21-го після обіду</div>
-                <div class="collapsible-body">
-                  <img src="Rules/slow.jpg" />
-                </div>
-              </li>
-              <li>
-                <div class="collapsible-header">▼ Сума до 200 грн</div>
-                <div class="collapsible-body">
-                  <img src="Rules/drake.jpg" />
-                </div>
-              </li>
-              <li>
-                <div class="collapsible-header">▼ Нікому не розповідати кому ти робиш подарунок</div>
-                <div class="collapsible-body">
-                  <img src="Rules/silent.jpg" />
-                </div>
-              </li>
-            </ul>
+          <div id="rules" class="col s12">
+            <div class="container">
+              <ul class="collapsible">
+                <li>
+                  <div class="collapsible-header">
+                    ▼ Розбираємо подарунки в суботу 21-го після обіду
+                  </div>
+                  <div class="collapsible-body">
+                    <img src="Rules/slow.jpg" />
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">▼ Сума до 200 грн</div>
+                  <div class="collapsible-body">
+                    <img src="Rules/drake.jpg" />
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">
+                    ▼ Нікому не розповідати кому ти робиш подарунок
+                  </div>
+                  <div class="collapsible-body">
+                    <img src="Rules/silent.jpg" />
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="remove-modal" class="modal">
-    <div class="modal-content">
-      <h4>Видалити учасника з таємного санти?</h4>
-      <p style="font-size: 16px;">
-        Ви насправді бажаєте видалити учасника з участі у розіграші таємного
-        санти?
-      </p>
-    </div>
-    <div class="modal-footer">
-      <a id="remove-user" href="#!" class="modal-close waves-effect waves-green btn-flat">Насправді хочу видалити з участі!</a>
-      <a href="#!" class="modal-close waves-effect waves-red btn-flat">Відмінити</a>
-    </div>
-  </div>
-  <div id="notification-modal" class="modal">
-    <div class="modal-content">
-      <h4 style="text-align: center;">
-        Будь-ласка, не забудьте повідомити про це
-        <p>
-          <a href="viber://chat?number=+380938877771">Анастасію</a>
-          чи
-          <a href="viber://chat?number=+380635845389">Вікторію</a>
+    <div id="remove-modal" class="modal">
+      <div class="modal-content">
+        <h4>Видалити учасника з таємного санти?</h4>
+        <p style="font-size: 16px;">
+          Ви насправді бажаєте видалити учасника з участі у розіграші таємного
+          санти?
         </p>
-      </h4>
+      </div>
+      <div class="modal-footer">
+        <a
+          id="remove-user"
+          href="#!"
+          class="modal-close waves-effect waves-green btn-flat"
+          >Насправді хочу видалити з участі!</a
+        >
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat"
+          >Відмінити</a
+        >
+      </div>
     </div>
-  </div>
-</body>
-
+    <div id="notification-modal" class="modal">
+      <div class="modal-content">
+        <h4 style="text-align: center;">
+          Будь-ласка, не забудьте повідомити про це
+          <p>
+            <a href="viber://chat?number=+380938877771">Анастасію</a>
+            чи
+            <a href="viber://chat?number=+380635845389">Вікторію</a>
+          </p>
+        </h4>
+      </div>
+    </div>
+    <!-- Modal Structure -->
+    <div
+      id="first-open-modal"
+      class="modal modal-fixed-footer"
+      style="display: none;
+            height: 60%;
+            width: 65%;"
+    >
+      <div class="modal-content">
+        <h4>Усім привіт ✌</h4>
+        <div class="row"></div>
+        <p>
+          Мене звати <b data-img="mySelf.jpg" class="tooltipped tooltipped-text hello-tooltip" data-position="right">Антон</b> і у вашій команді я людина
+          нова.
+        </p>
+        <p>Але не все ж вирішив прийняти участь у таємному санті.</p>
+        <p>
+          Проблема лише у тому, що я майже нікого з вас не знаю і не маю ніякого
+          уявлення що буде краще подарувати тому, чиє ім'я я витягнув із яйця
+          (та і з фантазією в мене тако собі).
+        </p>
+        <p>
+          Тому я вирішив скористися ідеєю
+          <b data-img="santa_done.jpg" class="tooltipped tooltipped-text hello-tooltip" data-position="top">Таємного Санти від Fozzy Group</b>
+          і просто поцікавитись а що кому мож потрібно.
+        </p>
+        <p>
+          Ну ось, п'ятниця, в мене работи не багато було, вирішив простенький сайт
+          на чистому JS зробити, <b data-img="slowpoke.jpg" class="tooltipped tooltipped-text hello-tooltip" data-position="top">по-швидкому</b>.
+        </p>
+        <div class="row"></div>
+        <h5>
+          <div class="row">Будь-ласка, якщо вам не складно допомогти мені, залиште якусь <i>наводку</i></div>
+          <div class="row">Ви <b data-img="arigato.jpg" class="tooltipped tooltipped-text hello-tooltip" data-position="top">дуже</b> мені цим допоможете.</div>
+          <div class="row" style="font-size: 16px;">(<i>А можливо і ще комусь такому як я</i>)</div>
+        </h5>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+          Я зрозумів/зрозуміла
+        </a>
+      </div>
+    </div>
+    <!--4-->
+    <script src="htmlBuilder.js"></script>
+    <!--5-->
+    <script src="httpHelper.js"></script>
+    <!--6-->
+    <script src="index.js"></script>
+    <!--7-->
+  </body>
 </html>

@@ -30,11 +30,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
 
 	var removeModal = M.Modal.init(document.getElementById('remove-modal'), {
-		opacity: 0.7
+		opacity: 0.7,
+		preventScrolling: true
 	});
 
 	global.NOTIFICATION_MODAL = M.Modal.init(document.getElementById('notification-modal'), {
-		opacity: 0.6
+		opacity: 0.6,
+		preventScrolling: true
 	});
 
 	////getUsers -> f(callback)- From httpHelper.js
@@ -101,7 +103,29 @@ document.addEventListener('DOMContentLoaded', function () {
 		}, 16);
 	});
 
-    var collapsible = M.Collapsible.init( document.querySelectorAll('.collapsible'), {});
+	var collapsible = M.Collapsible.init( document.querySelectorAll('.collapsible'), {});
+	
+	if(!localStorage.getItem('alreadyShow')) {
+		localStorage.setItem('alreadyShow', true);
+
+		M.Modal.init(document.getElementById('first-open-modal'), {
+			opacity: 0.3,
+			preventScrolling: true,
+			onOpenEnd: () => {
+				setTimeout(() => {
+					var helloTooltips = document.getElementsByClassName('hello-tooltip');
+					for(var i = 0; i< helloTooltips.length; i++){
+						var elem = helloTooltips[i];
+						var source = elem.dataset.img;
+						console.log(source);
+						M.Tooltip.init(elem, {
+							html: `<div class=""><img src="tooltips/${source}" style="max-height:300px; max-width:500px;"/></div>`
+						});
+					}
+				});
+			}
+		}).open();
+	}
 });
 
 var addHideClass = (el, hideClass = global.classes.HIDE, timeout = 300) => {
