@@ -1,310 +1,311 @@
 {
     "id_1": {
-        "id": "1",
-        "name": "Анастасія Кравець",
-        "bonus_name": "Настя",
         "avatar": "anastasiaKravets.jpg",
-        "wish": "",
+        "bonus_name": "Настя",
+        "id": "1",
         "male_sex": false,
-        "participation": true
-    },
-    "id_2": {
-        "id": "2",
-        "name": "Анатолій Бугера",
-        "bonus_name": "Толік",
-        "avatar": "anatoliyBuhera.jpg",
-        "wish": "",
-        "male_sex": true,
-        "participation": true
-    },
-    "id_3": {
-        "id": "3",
-        "name": "Антон Настольний",
-        "bonus_name": "Тоша",
-        "avatar": "antonNastolnyi.jpg",
-        "wish": "",
-        "male_sex": true,
-        "participation": true
-    },
-    "id_4": {
-        "id": "4",
-        "name": "Богдан Лученко",
-        "bonus_name": "Бодя",
-        "avatar": "bohdanLuchenko.jpg",
-        "wish": "",
-        "male_sex": true,
-        "participation": true
-    },
-    "id_5": {
-        "id": "5",
-        "name": "Богдан Семикрас",
-        "bonus_name": "Бодя",
-        "avatar": "bohdanSemykras.jpg",
-        "wish": "",
-        "male_sex": true,
-        "participation": false
-    },
-    "id_6": {
-        "id": "6",
-        "name": "Богдан Швець",
-        "bonus_name": "Бодя",
-        "avatar": "bohdanSvec.jpg",
-        "wish": "",
-        "male_sex": true,
-        "participation": true
-    },
-    "id_7": {
-        "id": "7",
-        "name": "Діана Климчик",
-        "bonus_name": "",
-        "avatar": "dianaKlimchik.jpg",
-        "wish": "",
-        "male_sex": false,
-        "participation": true
-    },
-    "id_8": {
-        "id": "8",
-        "name": "Дмитро",
-        "bonus_name": "Діма",
-        "avatar": "dima__.jpg",
-        "wish": "",
-        "male_sex": true,
-        "participation": true
-    },
-    "id_9": {
-        "id": "9",
-        "name": "Дмитро Білуха",
-        "bonus_name": "Діма",
-        "avatar": "dimaBilukha.jpg",
-        "wish": "",
-        "male_sex": true,
-        "participation": true
+        "name": "Анастасія Кравець",
+        "participation": true,
+        "wish": ""
     },
     "id_10": {
-        "id": "10",
-        "name": "Дмитро Самборський",
-        "bonus_name": "Діма",
         "avatar": "dimaSamborskyi.jpg",
-        "wish": "",
+        "bonus_name": "Діма",
+        "id": "10",
         "male_sex": true,
-        "participation": true
+        "name": "Дмитро Самборський",
+        "participation": true,
+        "wish": ""
     },
     "id_11": {
-        "id": "11",
-        "name": "Євгеній Долгій",
-        "bonus_name": "Женя",
         "avatar": "evgeniyDolhiy.jpg",
-        "wish": "",
+        "bonus_name": "Женя",
+        "id": "11",
         "male_sex": true,
-        "participation": false
+        "name": "Євгеній Долгій",
+        "participation": false,
+        "wish": ""
     },
     "id_12": {
-        "id": "12",
-        "name": "Ігор Педорич",
-        "bonus_name": "Начальнич",
         "avatar": "igorPedorych.jpg",
-        "wish": "",
+        "bonus_name": "Начальнич",
+        "id": "12",
         "male_sex": true,
-        "participation": true
+        "name": "Ігор Педорич",
+        "participation": true,
+        "wish": ""
     },
     "id_13": {
-        "id": "13",
-        "name": "Ілона Крижанівська",
-        "bonus_name": "",
         "avatar": "ilonaKruzanivska.jpg",
-        "wish": "",
+        "bonus_name": "",
+        "id": "13",
         "male_sex": false,
-        "participation": true
+        "name": "Ілона Крижанівська",
+        "participation": true,
+        "wish": "нормальна в мене ава. Бухло можна :)"
     },
     "id_14": {
-        "id": "14",
-        "name": "Микитюк Іван",
-        "bonus_name": "Ваня",
         "avatar": "ivanMukutiyk.jpg",
-        "wish": "",
+        "bonus_name": "Ваня",
+        "id": "14",
         "male_sex": true,
-        "participation": true
+        "name": "Микитюк Іван",
+        "participation": true,
+        "wish": ""
     },
     "id_15": {
-        "id": "15",
-        "name": "Бурлачук Юлія",
-        "bonus_name": "Юля",
         "avatar": "JuliaBurlachuk.jpg",
-        "wish": "",
+        "bonus_name": "Юля",
+        "id": "15",
         "male_sex": false,
-        "participation": true
+        "name": "Бурлачук Юлія",
+        "participation": true,
+        "wish": ""
     },
     "id_16": {
-        "id": "16",
-        "name": "Станкевич Юлія",
-        "bonus_name": "Юля",
         "avatar": "JuliaStankevich.jpg",
-        "wish": "",
+        "bonus_name": "Юля",
+        "id": "16",
         "male_sex": false,
-        "participation": true
+        "name": "Станкевич Юлія",
+        "participation": true,
+        "wish": ""
     },
     "id_17": {
-        "id": "17",
-        "name": "Людмила Комарова",
-        "bonus_name": "Люда",
         "avatar": "ludaKomarova.jpg",
-        "wish": "",
+        "bonus_name": "Люда",
+        "id": "17",
         "male_sex": false,
-        "participation": true
+        "name": "Людмила Комарова",
+        "participation": true,
+        "wish": "афроамериканця"
     },
     "id_18": {
-        "id": "18",
-        "name": "Максим Борщевський",
-        "bonus_name": "Макс",
         "avatar": "MaksimBorschevskiy.jpg",
-        "wish": "",
+        "bonus_name": "Макс",
+        "id": "18",
         "male_sex": true,
-        "participation": true
+        "name": "Максим Борщевський",
+        "participation": true,
+        "wish": "Клаву, бо кнопки не всі роблять"
     },
     "id_19": {
-        "id": "19",
-        "name": "Максим Каплюк",
-        "bonus_name": "Макс",
         "avatar": "maksymKapliuk.jpg",
-        "wish": "",
+        "bonus_name": "Макс",
+        "id": "19",
         "male_sex": true,
-        "participation": false
+        "name": "Максим Каплюк",
+        "participation": false,
+        "wish": ""
+    },
+    "id_2": {
+        "avatar": "anatoliyBuhera.jpg",
+        "bonus_name": "Толік",
+        "id": "2",
+        "male_sex": true,
+        "name": "Анатолій Бугера",
+        "participation": true,
+        "wish": "носки(білі) - хуили\n\nнет намека!удивите"
     },
     "id_20": {
-        "id": "20",
-        "name": "Короленко Олег",
-        "bonus_name": "Олег",
         "avatar": "olehKorolenko.jpg",
-        "wish": "",
+        "bonus_name": "Олег",
+        "id": "20",
         "male_sex": true,
-        "participation": false
+        "name": "Короленко Олег",
+        "participation": false,
+        "wish": ""
     },
     "id_21": {
-        "id": "21",
-        "name": "Олег Засаднюк",
-        "bonus_name": "Олег",
         "avatar": "olehZasadniuk.jpg",
-        "wish": "",
+        "bonus_name": "Олег",
+        "id": "21",
         "male_sex": true,
-        "participation": false
+        "name": "Олег Засаднюк",
+        "participation": false,
+        "wish": ""
     },
     "id_22": {
-        "id": "22",
-        "name": "Павло Столярик",
-        "bonus_name": "Паша",
         "avatar": "pavloStoliaryk.jpg",
-        "wish": "",
+        "bonus_name": "Паша",
+        "id": "22",
         "male_sex": true,
-        "participation": false
+        "name": "Павло Столярик",
+        "participation": false,
+        "wish": ""
     },
     "id_23": {
-        "id": "23",
-        "name": "Олександр Федорчук",
-        "bonus_name": "Саша",
         "avatar": "sashaFedorchuk.jpg",
-        "wish": "",
+        "bonus_name": "Саша",
+        "id": "23",
         "male_sex": true,
-        "participation": true
+        "name": "Олександр Федорчук",
+        "participation": true,
+        "wish": ""
     },
     "id_24": {
-        "id": "24",
-        "name": "Олександр Тяпкін",
-        "bonus_name": "Саша",
         "avatar": "sashaTiapkin.jpg",
-        "wish": "",
+        "bonus_name": "Саша",
+        "id": "24",
         "male_sex": true,
-        "participation": true
+        "name": "Олександр Тяпкін",
+        "participation": true,
+        "wish": "Азбуку або колекцию марок если ты понимаешь о чем я"
     },
     "id_25": {
-        "id": "25",
-        "name": "Сергій Левченко",
-        "bonus_name": "",
         "avatar": "sergiyLevchenko.jpg",
-        "wish": "",
+        "bonus_name": "",
+        "id": "25",
         "male_sex": true,
-        "participation": false
+        "name": "Сергій Левченко",
+        "participation": false,
+        "wish": ""
     },
     "id_26": {
-        "id": "26",
-        "name": "Сергій Устінов",
-        "bonus_name": "",
         "avatar": "sergiyUstinov.jpg",
-        "wish": "",
+        "bonus_name": "",
+        "id": "26",
         "male_sex": true,
-        "participation": false
+        "name": "Сергій Устінов",
+        "participation": false,
+        "wish": ""
     },
     "id_27": {
-        "id": "27",
-        "name": "Вероніка Коваль",
-        "bonus_name": "Нікa",
         "avatar": "Veronika.jpg",
-        "wish": "",
+        "bonus_name": "Нікa",
+        "id": "27",
         "male_sex": false,
-        "participation": true
+        "name": "Вероніка Коваль",
+        "participation": true,
+        "wish": ""
     },
     "id_28": {
-        "id": "28",
-        "name": "Вікторія Посвалюк",
-        "bonus_name": "Віка",
         "avatar": "viktoriaPosvalyuk.jpg",
-        "wish": "",
+        "bonus_name": "Віка",
+        "id": "28",
         "male_sex": true,
-        "participation": true
+        "name": "Вікторія Посвалюк",
+        "participation": true,
+        "wish": "бухло\n"
     },
     "id_29": {
-        "id": "29",
-        "name": "Віталій Сницарь",
         "avatar": "vitaliiSnitsar.jpg",
-        "wish": "",
+        "id": "29",
         "male_sex": true,
-        "participation": true
+        "name": "Віталій Сницарь",
+        "participation": true,
+        "wish": ""
+    },
+    "id_3": {
+        "avatar": "antonNastolnyi.jpg",
+        "bonus_name": "Тоша",
+        "id": "3",
+        "male_sex": true,
+        "name": "Антон Настольний",
+        "participation": true,
+        "updatedBy": "10.13.16.106",
+        "wish": "Тапочки для  работы"
     },
     "id_30": {
-        "id": "30",
-        "name": "Влад Чегаровский",
         "avatar": "vladChegarovskiy.jpg",
-        "wish": "",
+        "id": "30",
         "male_sex": true,
-        "participation": true
+        "name": "Влад Чегаровский",
+        "participation": true,
+        "wish": ""
     },
     "id_31": {
-        "id": "31",
-        "name": "Чубатюк Володимир",
         "avatar": "vladimir.jpg",
-        "wish": "",
+        "id": "31",
         "male_sex": true,
-        "participation": false
+        "name": "Чубатюк Володимир",
+        "participation": false,
+        "wish": ""
     },
     "id_32": {
-        "id": "32",
-        "name": "Володимир Ивах",
         "avatar": "vladimirIvakh.jpg",
-        "wish": "",
+        "id": "32",
         "male_sex": true,
-        "participation": true
+        "name": "Володимир Ивах",
+        "participation": true,
+        "wish": ""
     },
     "id_33": {
-        "id": "33",
-        "name": "Володимир Норцов",
         "avatar": "vladimirNorcov.jpg",
-        "wish": "",
+        "id": "33",
         "male_sex": true,
-        "participation": true
+        "name": "Володимир Норцов",
+        "participation": true,
+        "wish": "медаль"
     },
     "id_34": {
-        "id": "34",
-        "name": "Володимир Пустовіт",
         "avatar": "vladimirPustovit.jpg",
-        "wish": "",
+        "id": "34",
         "male_sex": true,
-        "participation": true
+        "name": "Володимир Пустовіт",
+        "participation": true,
+        "wish": ""
     },
     "id_35": {
-        "id": "35",
-        "name": "Юрій Погорелюк",
         "avatar": "yuriyPogoreliuk.jpg",
-        "wish": "",
+        "id": "35",
         "male_sex": true,
-        "participation": false
+        "name": "Юрій Погорелюк",
+        "participation": false,
+        "wish": ""
+    },
+    "id_4": {
+        "avatar": "bohdanLuchenko.jpg",
+        "bonus_name": "Бодя",
+        "id": "4",
+        "male_sex": true,
+        "name": "Богдан Лученко",
+        "participation": true,
+        "wish": "жуйку\n"
+    },
+    "id_5": {
+        "avatar": "bohdanSemykras.jpg",
+        "bonus_name": "Бодя",
+        "id": "5",
+        "male_sex": true,
+        "name": "Богдан Семикрас",
+        "participation": false,
+        "wish": ""
+    },
+    "id_6": {
+        "avatar": "bohdanSvec.jpg",
+        "bonus_name": "Бодя",
+        "id": "6",
+        "male_sex": true,
+        "name": "Богдан Швець",
+        "participation": true,
+        "wish": ""
+    },
+    "id_7": {
+        "avatar": "dianaKlimchik.jpg",
+        "bonus_name": "",
+        "id": "7",
+        "male_sex": false,
+        "name": "Діана Климчик",
+        "participation": true,
+        "wish": ""
+    },
+    "id_8": {
+        "avatar": "dima__.jpg",
+        "bonus_name": "Діма",
+        "id": "8",
+        "male_sex": true,
+        "name": "Дмитро",
+        "participation": true,
+        "wish": "Можна книжку, а можна і бухлішко.  Та й носки підійдуть, прикольні. :)"
+    },
+    "id_9": {
+        "avatar": "dimaBilukha.jpg",
+        "bonus_name": "Діма",
+        "id": "9",
+        "male_sex": true,
+        "name": "Дмитро Білуха",
+        "participation": true,
+        "wish": ""
     }
 }
