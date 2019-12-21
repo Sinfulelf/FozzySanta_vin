@@ -1,6 +1,6 @@
 var global = {
 	USERS_URL: 'https://temabitsanta.firebaseio.com',
-	LAST_DATE: new Date(2019, 12, 19),
+	LAST_DATE: new Date(2019, 11, 19),
 	DATA: [],
 	SELECTED_USER_ID: null,
 	NOTIFICATION_MODAL: null,
