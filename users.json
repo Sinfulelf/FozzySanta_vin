@@ -6,7 +6,8 @@
         "male_sex": false,
         "name": "Анастасія Кравець",
         "participation": true,
-        "wish": ""
+        "wish": "",
+        "left": true
     },
     "id_10": {
         "avatar": "dimaSamborskyi.jpg",
@@ -15,7 +16,8 @@
         "male_sex": true,
         "name": "Дмитро Самборський",
         "participation": true,
-        "wish": ""
+        "wish": "",
+        "left": true
     },
     "id_11": {
         "avatar": "evgeniyDolhiy.jpg",
@@ -42,7 +44,8 @@
         "male_sex": false,
         "name": "Ілона Крижанівська",
         "participation": true,
-        "wish": "нормальна в мене ава. Бухло можна :)"
+        "wish": "нормальна в мене ава. Бухло можна :)",
+        "left": true
     },
     "id_14": {
         "avatar": "ivanMukutiyk.jpg",
@@ -177,7 +180,8 @@
         "male_sex": false,
         "name": "Вероніка Коваль",
         "participation": true,
-        "wish": ""
+        "wish": "",
+        "left": true
     },
     "id_28": {
         "avatar": "viktoriaPosvalyuk.jpg",
@@ -252,7 +256,8 @@
         "male_sex": true,
         "name": "Юрій Погорелюк",
         "participation": false,
-        "wish": ""
+        "wish": "",
+        "left": true
     },
     "id_4": {
         "avatar": "bohdanLuchenko.jpg",
@@ -261,7 +266,8 @@
         "male_sex": true,
         "name": "Богдан Лученко",
         "participation": true,
-        "wish": "жуйку\n"
+        "wish": "жуйку\n",
+        "left": true
     },
     "id_5": {
         "avatar": "bohdanSemykras.jpg",
@@ -279,7 +285,8 @@
         "male_sex": true,
         "name": "Богдан Швець",
         "participation": true,
-        "wish": ""
+        "wish": "",
+        "left": true
     },
     "id_7": {
         "avatar": "dianaKlimchik.jpg",
@@ -295,9 +302,10 @@
         "bonus_name": "Діма",
         "id": "8",
         "male_sex": true,
-        "name": "Дмитро",
+        "name": "Дмитро Попович",
         "participation": true,
-        "wish": "Можна книжку, а можна і бухлішко.  Та й носки підійдуть, прикольні. :)"
+        "wish": "Можна книжку, а можна і бухлішко.  Та й носки підійдуть, прикольні. :)",
+        "left": true
     },
     "id_9": {
         "avatar": "dimaBilukha.jpg",

@@ -119,6 +119,11 @@ body {
     max-height: 550px;
 }
 
+.left-badge {
+    position: absolute;
+    
+}
+
 /*MEDIA*/
 
 @media (max-width: 760px) {

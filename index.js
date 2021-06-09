@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 		var users = document.getElementById('users');
-
+		console.log(data);
 		var SortedByActivity = data.filter(el => el.id)
 			.sort((a, b) => a.id - b.id)
 			.sort((a, b) => b.participation - a.participation);

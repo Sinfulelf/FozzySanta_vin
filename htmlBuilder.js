@@ -3,19 +3,21 @@ function buildCards(data) {
 					<div class="s2"></div>
 					<h3 id="no-active-users-text" class="s8 grey-text" style="text-align:center;"></h3>
 				</div>`;
-	for (var { id, name, participation, avatar, wish } of data) {
-		html += buildCard(participation, id, wish, name, avatar);
+	for (var { id, name, participation, avatar, wish, left } of data) {
+		html += buildCard(participation, id, wish, name, avatar, left);
 	}
 	return html;
 }
 
-function buildCard(participation, id, wish, name, avatar) {
+function buildCard(participation, id, wish, name, avatar, left) {
+	console.log(left);
 	return `			
 	<div
 		class="user-card col s12 m10 offset-m1 l8 offset-l2 scale-transition ${!participation ? 'non-participation' : ''}"
 		style="position:relative;"
 		id="user-${id}">
 			${buildCardData(participation, id, wish, name, avatar)}
+			${left ? '<span class="new badge" data-badge-caption="Покинув колектив"></span>':''}
 	</div>`;
 }
 
